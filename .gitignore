@@ -50,6 +50,10 @@ build/
 # Tool caches
 .pi-lens/
 
+# pnpm lockfile (using npm)
+pnpm-lock.yaml
+pnpm-workspace.yaml
+
 # OpenNext
 .open-next/
 
