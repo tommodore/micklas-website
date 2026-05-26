@@ -16,7 +16,7 @@ const currentLocale = Astro.currentLocale || "de";
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description || "Micklas Travels — Travel Photography by Michael Glashauser. 120k+ Instagram community. Partner for Social Media Advertising."} />
 		<meta name="theme-color" content="#142A64" />
-		<link rel="icon" type="image/svg+xml" href="/logo-micklas.svg" />
+		<link rel="icon" href="/logo-micklas.jpg" />
 		<title>{title} | Micklas Travels</title>
 		<slot name="head" />
 	</head>
@@ -25,7 +25,7 @@ const currentLocale = Astro.currentLocale || "de";
 		<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
 			<div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
 				<a href={`/${currentLocale}/`} class="flex items-center gap-3">
-					<img src="/logo-micklas.svg" alt="Micklas" class="h-9 w-9" />
+					<img src="/logo-micklas.jpg" alt="Micklas" class="h-9 w-9" />
 					<span class="font-semibold text-xl tracking-tight">Micklas Travels</span>
 				</a>
 

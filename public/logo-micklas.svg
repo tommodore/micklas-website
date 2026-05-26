@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <!-- Outer circle -->
-  <circle cx="100" cy="100" r="95" fill="#142A64"/>
-  <!-- Teal swoosh banner -->
-  <path d="M 5 160 Q 50 130 100 155 Q 150 180 195 145 L 195 120 Q 150 155 100 130 Q 50 105 5 135 Z" fill="#30BB9A"/>
-  <!-- M letter -->
-  <text x="100" y="115" font-family="Georgia, serif" font-size="90" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">M</text>
-</svg>
