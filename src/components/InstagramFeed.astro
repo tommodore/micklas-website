@@ -1,19 +1,30 @@
+---
+import { t, getLocale } from "../i18n/translations";
+
+interface Props {
+	locale: string;
+}
+
+const { locale } = Astro.props;
+const _ = (key: string) => t(key, getLocale(locale));
+---
+
 <section class="py-24 bg-white reveal">
 	<div class="max-w-6xl mx-auto px-6">
 		<div class="text-center mb-16">
 			<div class="inline-flex items-center gap-2 mb-4">
 				<span class="w-8 h-px bg-brand-teal"></span>
-				<span class="text-brand-teal text-sm tracking-[3px]">INSTAGRAM</span>
+				<span class="text-brand-teal text-sm tracking-[3px]">{_("instagram.badge")}</span>
 				<span class="w-8 h-px bg-brand-teal"></span>
 			</div>
-			<h2 class="text-5xl font-bold tracking-tight mb-4">Follow @micklas on Instagram</h2>
-			<p class="text-xl text-gray-600">Latest moments from my travels</p>
+			<h2 class="text-5xl font-bold tracking-tight mb-4">{_("instagram.title")}</h2>
+			<p class="text-xl text-gray-600">{_("instagram.subtitle")}</p>
 			<a
 				href="https://instagram.com/micklas"
 				target="_blank"
 				class="inline-block mt-4 text-brand-teal hover:underline font-medium"
 			>
-				@micklas on Instagram
+				{_("instagram.follow")}
 			</a>
 		</div>
 
@@ -29,7 +40,7 @@
 						📸
 					</div>
 					<div class="absolute bottom-4 left-4 right-4 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity line-clamp-2">
-						Follow for daily travel inspiration
+						{_("instagram.caption")}
 					</div>
 				</a>
 			))}

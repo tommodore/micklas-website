@@ -2,8 +2,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
 import { getPosts } from "../../lib/payload";
+import { t, getLocale } from "../../i18n/translations";
 
 const currentLocale = Astro.currentLocale || "de";
+const _ = (key: string) => t(key, getLocale(currentLocale));
 
 // Fetch published posts from Payload API
 const posts = await getPosts({ locale: currentLocale, limit: 12 });
@@ -17,19 +19,17 @@ const posts = await getPosts({ locale: currentLocale, limit: 12 });
 	<div class="max-w-6xl mx-auto px-6 py-24">
 		<div class="text-center mb-16">
 			<div class="inline-block px-4 py-1 bg-brand-teal/10 text-brand-teal text-sm tracking-[3px] mb-4">
-				TRAVEL JOURNAL
+				{_("journal.badge")}
 			</div>
-			<h1 class="text-6xl font-bold tracking-tight mb-6">Stories from the Road</h1>
+			<h1 class="text-6xl font-bold tracking-tight mb-6">{_("journal.title")}</h1>
 			<p class="text-xl text-gray-600 max-w-lg mx-auto">
-				Behind-the-scenes moments, travel tips, and honest reflections from my journeys around the world.
+				{_("journal.subtitle")}
 			</p>
 		</div>
 
 		{posts.length === 0 ? (
 			<div class="text-center py-20">
-				<p class="text-gray-500">
-					No published stories yet. Check back soon!
-				</p>
+				<p class="text-gray-500">{_("journal.empty")}</p>
 			</div>
 		) : (
 			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -61,7 +61,7 @@ const posts = await getPosts({ locale: currentLocale, limit: 12 });
 								{post.excerpt}
 							</p>
 							<div class="mt-6 flex items-center text-brand-teal font-medium group-hover:underline">
-								Read the full story &rarr;
+								{_("journal.read")}
 							</div>
 						</div>
 					</a>

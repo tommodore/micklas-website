@@ -1,22 +1,25 @@
 ---
+import { t, getLocale } from "../i18n/translations";
+
 interface Props {
 	locale: string;
 }
 
 const { locale } = Astro.props;
+const _ = (key: string) => t(key, getLocale(locale));
 ---
 
 <section class="bg-brand-navy text-white py-24 reveal">
 	<div class="max-w-3xl mx-auto text-center px-6">
-		<h2 class="text-5xl font-bold tracking-tight mb-6">Ready to work together?</h2>
+		<h2 class="text-5xl font-bold tracking-tight mb-6">{_("cta.title")}</h2>
 		<p class="text-xl text-white/80 mb-10 max-w-lg mx-auto">
-			Whether you're a brand, tourism board, or hotel &mdash; let's create something beautiful.
+			{_("cta.description")}
 		</p>
 		<a
 			href={`/${locale}/collaborate`}
 			class="inline-block bg-brand-teal hover:bg-white hover:text-brand-navy text-white text-lg px-14 py-4 rounded-full font-medium transition-all"
 		>
-			Start a Conversation
+			{_("cta.button")}
 		</a>
 	</div>
 </section>

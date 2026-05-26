@@ -17,9 +17,9 @@ const currentLocale = Astro.currentLocale || "de";
 	</Fragment>
 
 	<Hero locale={currentLocale} />
-	<StatsBar />
+	<StatsBar locale={currentLocale} />
 	<FeaturedTravels locale={currentLocale} />
-	<Testimonials />
-	<InstagramFeed />
+	<Testimonials locale={currentLocale} />
+	<InstagramFeed locale={currentLocale} />
 	<CTASection locale={currentLocale} />
 </BaseLayout>
