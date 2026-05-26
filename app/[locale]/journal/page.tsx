@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { getPayload } from 'payload'
-import config from '../../../../payload.config'
+import config from '../../../payload.config'
 
 export default async function JournalPage({ 
   params 
