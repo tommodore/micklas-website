@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Testimonials from '../components/Testimonials'
-import InstagramFeed from '../components/InstagramFeed'
+import Testimonials from '../../components/Testimonials'
+import InstagramFeed from '../../components/InstagramFeed'
 
 const locales = ['de', 'en', 'fr', 'it', 'es', 'pt', 'da', 'sv', 'no', 'me']
 
