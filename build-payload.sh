@@ -53,6 +53,9 @@ ASTRO_WRANGLER=$(cat wrangler.jsonc 2>/dev/null || echo "")
 
 cp wrangler.payload.jsonc wrangler.jsonc
 
+echo "🧹 Cleaning Astro build artifacts (dist/)..."
+rm -rf dist/ .astro/ .next/
+
 echo "🔨 Building Payload CMS backend..."
 NEXT_PRIVATE_STANDALONE=true npx next build
 node -e "const fs=require('fs');const p='node_modules/@opennextjs/cloudflare/dist/cli/templates/shims/env.js';let c=fs.readFileSync(p,'utf8');if(!c.includes('export default')){fs.writeFileSync(p,c+'\nexport default { loadEnvConfig }\n')}"
