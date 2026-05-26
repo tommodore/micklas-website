@@ -18,8 +18,13 @@ const destinations: Record<string, any> = {
   },
 }
 
-export default function DestinationPage({ params }: { params: { locale: string; slug: string } }) {
-  const dest = destinations[params.slug]
+export default async function DestinationPage({ 
+  params 
+}: { 
+  params: Promise<{ locale: string; slug: string }> 
+}) {
+  const { locale, slug } = await params
+  const dest = destinations[slug]
 
   if (!dest) {
     notFound()
@@ -28,7 +33,7 @@ export default function DestinationPage({ params }: { params: { locale: string; 
   return (
     <div className="max-w-4xl mx-auto px-6 py-24">
       <div className="mb-8">
-        <Link href={`/${params.locale}/travels`} className="text-brand-teal hover:underline">
+        <Link href={`/${locale}/travels`} className="text-brand-teal hover:underline">
           ← Back to all travels
         </Link>
       </div>
@@ -49,7 +54,7 @@ export default function DestinationPage({ params }: { params: { locale: string; 
       </div>
 
       <div className="mt-16 pt-12 border-t">
-        <Link href={`/${params.locale}/collaborate`} className="btn-primary">
+        <Link href={`/${locale}/collaborate`} className="btn-primary">
           Book Micklas for your next project →
         </Link>
       </div>
