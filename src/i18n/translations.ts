@@ -22,6 +22,25 @@ const translations: Record<Locale, TranslationDict> = {
 		"nav.collaborate": "Kooperation",
 		"nav.impressum": "Impressum",
 		"nav.privacy": "Datenschutz",
+		"nav.merch": "Shop",
+		"nav.trainings": "Trainings",
+		"nav.pictures": "Bilder",
+
+		// Merch page
+		"merch.title": "Merchandise Shop",
+		"merch.subtitle":
+			"Trage Micklas – exklusive Kollektionen für echte Abenteurer.",
+		"merch.cta": "Zum Shop",
+
+		// Trainings page
+		"trainings.title": "Trainings & Buchung",
+		"trainings.subtitle": "Professionelle Fotografie-Trainings und Workshops.",
+		"trainings.cta": "Jetzt buchen",
+
+		// Pictures page
+		"pictures.title": "Meine Bilder",
+		"pictures.subtitle": "Lizenzierte Reisefotografie für dein Projekt.",
+		"pictures.cta": "Bilder anfragen",
 
 		// Hero
 		"hero.title": "MICKLAS TRAVELS",
@@ -147,6 +166,25 @@ const translations: Record<Locale, TranslationDict> = {
 		"nav.collaborate": "Collaborate",
 		"nav.impressum": "Impressum",
 		"nav.privacy": "Privacy Policy",
+		"nav.merch": "Shop",
+		"nav.trainings": "Trainings",
+		"nav.pictures": "Pictures",
+
+		// Merch page
+		"merch.title": "Merchandise Shop",
+		"merch.subtitle":
+			"Wear Micklas – exclusive collections for true adventurers.",
+		"merch.cta": "Visit Shop",
+
+		// Trainings page
+		"trainings.title": "Trainings & Booking",
+		"trainings.subtitle": "Professional photography trainings and workshops.",
+		"trainings.cta": "Book Now",
+
+		// Pictures page
+		"pictures.title": "Get My Pictures",
+		"pictures.subtitle": "Licensed travel photography for your project.",
+		"pictures.cta": "Request Images",
 
 		"hero.title": "MICKLAS TRAVELS",
 		"hero.subtitle": "Travel Photography • 120k+ Community",
@@ -259,6 +297,27 @@ const translations: Record<Locale, TranslationDict> = {
 		"nav.collaborate": "Collaborer",
 		"nav.impressum": "Mentions légales",
 		"nav.privacy": "Confidentialité",
+		"nav.merch": "Boutique",
+		"nav.trainings": "Formations",
+		"nav.pictures": "Photos",
+
+		// Merch page
+		"merch.title": "Boutique de goodies",
+		"merch.subtitle":
+			"Portez Micklas – des collections exclusives pour les vrais aventuriers.",
+		"merch.cta": "Visiter la boutique",
+
+		// Trainings page
+		"trainings.title": "Formations & Réservation",
+		"trainings.subtitle":
+			"Formations et ateliers professionnels de photographie.",
+		"trainings.cta": "Réserver maintenant",
+
+		// Pictures page
+		"pictures.title": "Mes photos",
+		"pictures.subtitle":
+			"Photographie de voyage sous licence pour votre projet.",
+		"pictures.cta": "Demander des photos",
 
 		// Hero
 		"hero.title": "MICKLAS TRAVELS",
@@ -389,6 +448,26 @@ const translations: Record<Locale, TranslationDict> = {
 		"nav.collaborate": "Collabora",
 		"nav.impressum": "Impressum",
 		"nav.privacy": "Privacy",
+		"nav.merch": "Shop",
+		"nav.trainings": "Corsi",
+		"nav.pictures": "Foto",
+
+		// Merch page
+		"merch.title": "Negozio di merchandising",
+		"merch.subtitle":
+			"Indossa Micklas – collezioni esclusive per veri avventurieri.",
+		"merch.cta": "Vai al negozio",
+
+		// Trainings page
+		"trainings.title": "Corsi & Prenotazione",
+		"trainings.subtitle": "Corsi e workshop professionali di fotografia.",
+		"trainings.cta": "Prenota ora",
+
+		// Pictures page
+		"pictures.title": "Le mie foto",
+		"pictures.subtitle":
+			"Fotografia di viaggio su licenza per il tuo progetto.",
+		"pictures.cta": "Richiedi foto",
 
 		// Hero
 		"hero.title": "MICKLAS TRAVELS",
@@ -515,6 +594,26 @@ const translations: Record<Locale, TranslationDict> = {
 		"nav.collaborate": "Colaborar",
 		"nav.impressum": "Aviso legal",
 		"nav.privacy": "Privacidad",
+		"nav.merch": "Tienda",
+		"nav.trainings": "Capacitaciones",
+		"nav.pictures": "Fotos",
+
+		// Merch page
+		"merch.title": "Tienda de merchandising",
+		"merch.subtitle":
+			"Lleva Micklas – colecciones exclusivas para auténticos aventureros.",
+		"merch.cta": "Visitar la tienda",
+
+		// Trainings page
+		"trainings.title": "Capacitaciones y Reservas",
+		"trainings.subtitle":
+			"Capacitaciones y talleres profesionales de fotografía.",
+		"trainings.cta": "Reservar ahora",
+
+		// Pictures page
+		"pictures.title": "Mis fotos",
+		"pictures.subtitle": "Fotografía de viaje con licencia para tu proyecto.",
+		"pictures.cta": "Solicitar fotos",
 
 		// Hero
 		"hero.title": "MICKLAS TRAVELS",
@@ -641,6 +740,25 @@ const translations: Record<Locale, TranslationDict> = {
 		"nav.collaborate": "Colaborar",
 		"nav.impressum": "Impressum",
 		"nav.privacy": "Privacidade",
+		"nav.merch": "Loja",
+		"nav.trainings": "Formações",
+		"nav.pictures": "Fotos",
+
+		// Merch page
+		"merch.title": "Loja de Merchandising",
+		"merch.subtitle":
+			"Veste Micklas – coleções exclusivas para verdadeiros aventureiros.",
+		"merch.cta": "Visitar a loja",
+
+		// Trainings page
+		"trainings.title": "Formações e Reservas",
+		"trainings.subtitle": "Formações e workshops profissionais de fotografia.",
+		"trainings.cta": "Reservar agora",
+
+		// Pictures page
+		"pictures.title": "As minhas fotos",
+		"pictures.subtitle": "Fotografia de viagem licenciada para o teu projeto.",
+		"pictures.cta": "Solicitar fotos",
 
 		// Hero
 		"hero.title": "MICKLAS TRAVELS",
@@ -766,6 +884,25 @@ const translations: Record<Locale, TranslationDict> = {
 		"nav.collaborate": "Samarbejde",
 		"nav.impressum": "Impressum",
 		"nav.privacy": "Privatlivspolitik",
+		"nav.merch": "Shop",
+		"nav.trainings": "Træning",
+		"nav.pictures": "Billeder",
+
+		// Merch page
+		"merch.title": "Merchandise Shop",
+		"merch.subtitle":
+			"Bær Micklas – eksklusive kollektioner til ægte eventyrere.",
+		"merch.cta": "Besøg shoppen",
+
+		// Trainings page
+		"trainings.title": "Træning & Booking",
+		"trainings.subtitle": "Professionel fotograferingstræning og workshops.",
+		"trainings.cta": "Book nu",
+
+		// Pictures page
+		"pictures.title": "Mine billeder",
+		"pictures.subtitle": "Licenseret rejsefotografering til dit projekt.",
+		"pictures.cta": "Anmod om billeder",
 
 		// Hero
 		"hero.title": "MICKLAS TRAVELS",
@@ -892,6 +1029,24 @@ const translations: Record<Locale, TranslationDict> = {
 		"nav.collaborate": "Samarbeta",
 		"nav.impressum": "Impressum",
 		"nav.privacy": "Integritetspolicy",
+		"nav.merch": "Shop",
+		"nav.trainings": "Träningar",
+		"nav.pictures": "Bilder",
+
+		// Merch page
+		"merch.title": "Merchandise Shop",
+		"merch.subtitle": "Bär Micklas – exklusiva kollektioner för äventyrare.",
+		"merch.cta": "Besök shoppen",
+
+		// Trainings page
+		"trainings.title": "Träningar & Bokning",
+		"trainings.subtitle": "Professionell fototräning och workshops.",
+		"trainings.cta": "Boka nu",
+
+		// Pictures page
+		"pictures.title": "Mina bilder",
+		"pictures.subtitle": "Licensierad resefotografering för ditt projekt.",
+		"pictures.cta": "Begär bilder",
 
 		// Hero
 		"hero.title": "MICKLAS TRAVELS",
@@ -1017,6 +1172,24 @@ const translations: Record<Locale, TranslationDict> = {
 		"nav.collaborate": "Samarbeid",
 		"nav.impressum": "Impressum",
 		"nav.privacy": "Personvernerklæring",
+		"nav.merch": "Butikk",
+		"nav.trainings": "Treninger",
+		"nav.pictures": "Bilder",
+
+		// Merch page
+		"merch.title": "Merchandise-butikk",
+		"merch.subtitle": "Bær Micklas – eksklusive kolleksjoner for eventyrere.",
+		"merch.cta": "Besøk butikken",
+
+		// Trainings page
+		"trainings.title": "Treninger & Booking",
+		"trainings.subtitle": "Profesjonell fototrening og workshops.",
+		"trainings.cta": "Bestill nå",
+
+		// Pictures page
+		"pictures.title": "Mine bilder",
+		"pictures.subtitle": "Lisensiert reisefotografering for prosjektet ditt.",
+		"pictures.cta": "Be om bilder",
 
 		// Hero
 		"hero.title": "MICKLAS TRAVELS",
@@ -1142,6 +1315,25 @@ const translations: Record<Locale, TranslationDict> = {
 		"nav.collaborate": "Saradnja",
 		"nav.impressum": "Impresum",
 		"nav.privacy": "Politika privatnosti",
+		"nav.merch": "Prodavnica",
+		"nav.trainings": "Obuke",
+		"nav.pictures": "Slike",
+
+		// Merch page
+		"merch.title": "Prodavnica suvenira",
+		"merch.subtitle":
+			"Nosite Micklas – ekskluzivne kolekcije za prave avanturiste.",
+		"merch.cta": "Posjetite prodavnicu",
+
+		// Trainings page
+		"trainings.title": "Obuke & Rezervacije",
+		"trainings.subtitle": "Profesionalne foto-obuke i radionice.",
+		"trainings.cta": "Rezervišite sada",
+
+		// Pictures page
+		"pictures.title": "Moje slike",
+		"pictures.subtitle": "Licencirana putopisna fotografija za vaš projekat.",
+		"pictures.cta": "Zatražite slike",
 
 		// Hero
 		"hero.title": "MICKLAS TRAVELS",

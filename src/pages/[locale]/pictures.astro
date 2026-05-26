@@ -1,0 +1,57 @@
+---
+import { getLocaleStaticPaths } from "../../i18n/locales";
+
+export async function getStaticPaths() {
+	return getLocaleStaticPaths();
+}
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
+import { t, getLocale } from "../../i18n/translations";
+
+const currentLocale = Astro.currentLocale || "de";
+const tr = (key: string) => t(key, getLocale(currentLocale));
+---
+
+<BaseLayout title="Get My Pictures - Micklas Travels" locale={currentLocale}>
+	<Fragment slot="language-switcher">
+		<LanguageSwitcher />
+	</Fragment>
+
+	<div class="max-w-5xl mx-auto px-margin-mobile md:px-margin-desktop py-xxl reveal">
+		<div class="text-center mb-xl">
+			<div class="inline-flex items-center gap-2 mb-sm">
+				<span class="w-8 h-px bg-secondary"></span>
+				<span class="font-label-bold text-label-bold text-secondary uppercase tracking-widest">PICTURES</span>
+				<span class="w-8 h-px bg-secondary"></span>
+			</div>
+			<h1 class="font-headline-xl text-headline-xl text-on-surface mb-sm">{tr("pictures.title")}</h1>
+			<p class="font-body-xl text-body-xl text-on-surface-variant max-w-2xl mx-auto mb-xl">{tr("pictures.subtitle")}</p>
+		</div>
+
+		<div class="grid grid-cols-2 md:grid-cols-3 gap-gutter mb-xl">
+			{[1, 2, 3, 4, 5, 6].map((i) => (
+				<div class="aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-high group cursor-pointer">
+					<div class="w-full h-full bg-gradient-to-br from-primary-container/40 to-surface-container-high flex items-center justify-center">
+						<span class="material-symbols-outlined text-5xl text-on-surface-variant/30 group-hover:text-secondary/50 transition-colors">image</span>
+					</div>
+				</div>
+			))}
+		</div>
+
+		<div class="text-center">
+			<div class="glass-panel rounded-xl p-xl max-w-lg mx-auto">
+				<p class="font-body-md text-body-md text-on-surface-variant mb-lg">
+					Hochauflösende Reisefotografie lizenziert für redaktionelle und kommerzielle Nutzung. Kontaktiere mich für Preise und Verfügbarkeit.
+				</p>
+				<a
+					href={`/${currentLocale}/collaborate`}
+					class="inline-flex items-center gap-2 bg-secondary text-on-secondary font-label-bold text-label-bold uppercase px-8 py-4 rounded-lg hover:brightness-110 transition-all shadow-lg shadow-secondary/20"
+				>
+					{tr("pictures.cta")}
+					<span class="material-symbols-outlined text-lg">arrow_forward</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</BaseLayout>

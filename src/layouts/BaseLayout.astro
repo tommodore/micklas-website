@@ -79,6 +79,12 @@ const year = new Date().getFullYear();
 					>
 						{tr("nav.collaborate")}
 					</a>
+					<a
+						href={`/${currentLocale}/merch`}
+						class="font-label-bold text-label-bold uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300"
+					>
+						{tr("nav.merch")}
+					</a>
 				</nav>
 
 				{/* Right: Language Switcher + CTA */}
@@ -131,6 +137,24 @@ const year = new Date().getFullYear();
 					class="font-label-bold text-label-bold uppercase bg-secondary text-on-secondary px-4 py-3 rounded-lg text-center hover:brightness-110 transition-all"
 				>
 					{tr("nav.collaborate")}
+				</a>
+				<a
+					href={`/${currentLocale}/merch`}
+					class="font-label-bold text-label-bold uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300 px-4 py-3 rounded-lg hover:bg-surface-container-high"
+				>
+					{tr("nav.merch")}
+				</a>
+				<a
+					href={`/${currentLocale}/trainings`}
+					class="font-label-bold text-label-bold uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300 px-4 py-3 rounded-lg hover:bg-surface-container-high"
+				>
+					{tr("nav.trainings")}
+				</a>
+				<a
+					href={`/${currentLocale}/pictures`}
+					class="font-label-bold text-label-bold uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300 px-4 py-3 rounded-lg hover:bg-surface-container-high"
+				>
+					{tr("nav.pictures")}
 				</a>
 				<div class="pt-2 border-t border-outline-variant/30 mt-2">
 					<slot name="language-switcher-mobile" />
@@ -216,6 +240,21 @@ const year = new Date().getFullYear();
 								<li>
 									<a href={`/${currentLocale}/collaborate`} class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
 										{tr("nav.collaborate")}
+									</a>
+								</li>
+								<li>
+									<a href={`/${currentLocale}/merch`} class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+										{tr("nav.merch")}
+									</a>
+								</li>
+								<li>
+									<a href={`/${currentLocale}/trainings`} class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+										{tr("nav.trainings")}
+									</a>
+								</li>
+								<li>
+									<a href={`/${currentLocale}/pictures`} class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+										{tr("nav.pictures")}
 									</a>
 								</li>
 							</ul>

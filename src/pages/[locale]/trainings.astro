@@ -1,0 +1,62 @@
+---
+import { getLocaleStaticPaths } from "../../i18n/locales";
+
+export async function getStaticPaths() {
+	return getLocaleStaticPaths();
+}
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
+import { t, getLocale } from "../../i18n/translations";
+
+const currentLocale = Astro.currentLocale || "de";
+const tr = (key: string) => t(key, getLocale(currentLocale));
+---
+
+<BaseLayout title="Trainings - Micklas Travels" locale={currentLocale}>
+	<Fragment slot="language-switcher">
+		<LanguageSwitcher />
+	</Fragment>
+
+	<div class="max-w-5xl mx-auto px-margin-mobile md:px-margin-desktop py-xxl text-center reveal">
+		<div class="inline-flex items-center gap-2 mb-sm">
+			<span class="w-8 h-px bg-secondary"></span>
+			<span class="font-label-bold text-label-bold text-secondary uppercase tracking-widest">TRAININGS</span>
+			<span class="w-8 h-px bg-secondary"></span>
+		</div>
+
+		<h1 class="font-headline-xl text-headline-xl text-on-surface mb-sm">{tr("trainings.title")}</h1>
+		<p class="font-body-xl text-body-xl text-on-surface-variant max-w-2xl mx-auto mb-xl">{tr("trainings.subtitle")}</p>
+
+		<div class="grid md:grid-cols-3 gap-gutter max-w-4xl mx-auto">
+			<div class="glass-panel rounded-xl p-lg text-left">
+				<span class="material-symbols-outlined text-4xl text-secondary mb-md block">photo_camera</span>
+				<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Photography Basics</h3>
+				<p class="font-body-md text-body-md text-on-surface-variant mb-md">Lerne die Grundlagen der Reisefotografie – von Kameraeinstellungen bis zur Bildkomposition.</p>
+				<span class="font-label-bold text-label-bold text-secondary uppercase tracking-wider">Coming Soon</span>
+			</div>
+			<div class="glass-panel rounded-xl p-lg text-left">
+				<span class="material-symbols-outlined text-4xl text-secondary mb-md block">edit</span>
+				<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Content Creation</h3>
+				<p class="font-body-md text-body-md text-on-surface-variant mb-md">Erstelle packende Inhalte für Social Media – Storytelling, Editing und Timing.</p>
+				<span class="font-label-bold text-label-bold text-secondary uppercase tracking-wider">Coming Soon</span>
+			</div>
+			<div class="glass-panel rounded-xl p-lg text-left">
+				<span class="material-symbols-outlined text-4xl text-secondary mb-md block">groups</span>
+				<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">1:1 Coaching</h3>
+				<p class="font-body-md text-body-md text-on-surface-variant mb-md">Persönliches Coaching für angehende Creator und Fotografen – auf deine Ziele zugeschnitten.</p>
+				<span class="font-label-bold text-label-bold text-secondary uppercase tracking-wider">Coming Soon</span>
+			</div>
+		</div>
+
+		<div class="mt-xl">
+			<a
+				href={`/${currentLocale}/collaborate`}
+				class="inline-flex items-center gap-2 bg-secondary text-on-secondary font-label-bold text-label-bold uppercase px-8 py-4 rounded-lg hover:brightness-110 transition-all shadow-lg shadow-secondary/20"
+			>
+				{tr("trainings.cta")}
+				<span class="material-symbols-outlined text-lg">arrow_forward</span>
+			</a>
+		</div>
+	</div>
+</BaseLayout>
