@@ -1,8 +1,22 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
 	"name": "micklas-website",
 	"compatibility_date": "2026-05-26",
 	"compatibility_flags": ["nodejs_compat"],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "micklas-website"
+		}
+	],
+	"images": {
+		"binding": "IMAGES"
+	},
 	"d1_databases": [
 		{
 			"binding": "D1",
