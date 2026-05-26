@@ -47,5 +47,15 @@ build/
 .wrangler/
 .cloudflare/
 
+# Tool caches
+.pi-lens/
+
+# OpenNext
+.open-next/
+
+# Dev vars
+.dev.vars*
+!.dev.vars.example
+
 # Payload generated
 generated-types/

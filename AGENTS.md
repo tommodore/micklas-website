@@ -289,6 +289,3 @@ Update it whenever the stack, structure, or guidelines change.
 **Let's build something Michael and his 120k+ community will be proud of!** 🌍📸
 
 ---
-
-*Last updated: May 2026*  
-*Inspired by professional AGENTS.md practices and tailored for non-technical content creators.*
