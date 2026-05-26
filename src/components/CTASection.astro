@@ -6,20 +6,20 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const _ = (key: string) => t(key, getLocale(locale));
+const tr = (key: string) => t(key, getLocale(locale));
 ---
 
 <section class="bg-brand-navy text-white py-24 reveal">
 	<div class="max-w-3xl mx-auto text-center px-6">
-		<h2 class="text-5xl font-bold tracking-tight mb-6">{_("cta.title")}</h2>
+		<h2 class="text-5xl font-bold tracking-tight mb-6">{tr("cta.title")}</h2>
 		<p class="text-xl text-white/80 mb-10 max-w-lg mx-auto">
-			{_("cta.description")}
+			{tr("cta.description")}
 		</p>
 		<a
 			href={`/${locale}/collaborate`}
 			class="inline-block bg-brand-teal hover:bg-white hover:text-brand-navy text-white text-lg px-14 py-4 rounded-full font-medium transition-all"
 		>
-			{_("cta.button")}
+			{tr("cta.button")}
 		</a>
 	</div>
 </section>

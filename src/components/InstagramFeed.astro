@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const _ = (key: string) => t(key, getLocale(locale));
+const tr = (key: string) => t(key, getLocale(locale));
 ---
 
 <section class="py-24 bg-white reveal">
@@ -14,17 +14,17 @@ const _ = (key: string) => t(key, getLocale(locale));
 		<div class="text-center mb-16">
 			<div class="inline-flex items-center gap-2 mb-4">
 				<span class="w-8 h-px bg-brand-teal"></span>
-				<span class="text-brand-teal text-sm tracking-[3px]">{_("instagram.badge")}</span>
+				<span class="text-brand-teal text-sm tracking-[3px]">{tr("instagram.badge")}</span>
 				<span class="w-8 h-px bg-brand-teal"></span>
 			</div>
-			<h2 class="text-5xl font-bold tracking-tight mb-4">{_("instagram.title")}</h2>
-			<p class="text-xl text-gray-600">{_("instagram.subtitle")}</p>
+			<h2 class="text-5xl font-bold tracking-tight mb-4">{tr("instagram.title")}</h2>
+			<p class="text-xl text-gray-600">{tr("instagram.subtitle")}</p>
 			<a
 				href="https://instagram.com/micklas"
 				target="_blank"
 				class="inline-block mt-4 text-brand-teal hover:underline font-medium"
 			>
-				{_("instagram.follow")}
+				{tr("instagram.follow")}
 			</a>
 		</div>
 
@@ -40,7 +40,7 @@ const _ = (key: string) => t(key, getLocale(locale));
 						📸
 					</div>
 					<div class="absolute bottom-4 left-4 right-4 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity line-clamp-2">
-						{_("instagram.caption")}
+						{tr("instagram.caption")}
 					</div>
 				</a>
 			))}

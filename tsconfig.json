@@ -6,7 +6,6 @@
 		"skipLibCheck": true,
 		"strict": true,
 		"noEmit": true,
-		"incremental": true,
 		"module": "esnext",
 		"esModuleInterop": true,
 		"moduleResolution": "bundler",
@@ -15,22 +14,9 @@
 		"jsx": "preserve",
 		"strictNullChecks": false,
 		"paths": {
-			"@/*": ["./*"],
-			"@payload-config": ["./src/payload/payload.config.ts"]
-		},
-		"plugins": [
-			{
-				"name": "next"
-			}
-		]
+			"@/*": ["./*"]
+		}
 	},
-	"include": [
-		"next-env.d.ts",
-		".next/types/**/*.ts",
-		"**/*.ts",
-		"**/*.tsx",
-		"**/*.astro",
-		".astro/types.d.ts"
-	],
+	"include": ["**/*.ts", "**/*.tsx", "**/*.astro", ".astro/types.d.ts"],
 	"exclude": ["node_modules"]
 }

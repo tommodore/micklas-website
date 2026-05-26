@@ -1,10 +1,16 @@
 ---
+import { getLocaleStaticPaths } from "../../i18n/locales";
+
+export async function getStaticPaths() {
+	return getLocaleStaticPaths();
+}
+
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
 import { t, getLocale } from "../../i18n/translations";
 
 const currentLocale = Astro.currentLocale || "de";
-const _ = (key: string) => t(key, getLocale(currentLocale));
+const tr = (key: string) => t(key, getLocale(currentLocale));
 ---
 
 <BaseLayout title="About Micklas" locale={currentLocale}>
@@ -15,11 +21,11 @@ const _ = (key: string) => t(key, getLocale(currentLocale));
 	<div class="max-w-5xl mx-auto px-6 py-24">
 		<div class="text-center mb-16 reveal">
 			<div class="inline-block px-4 py-1 bg-brand-teal/10 text-brand-teal text-sm tracking-[3px] mb-4">
-				{_("about.badge")}
+				{tr("about.badge")}
 			</div>
-			<h1 class="text-7xl font-bold tracking-tighter mb-6">{_("about.title")}</h1>
+			<h1 class="text-7xl font-bold tracking-tighter mb-6">{tr("about.title")}</h1>
 			<p class="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-				{_("about.subtitle")}
+				{tr("about.subtitle")}
 			</p>
 		</div>
 
@@ -33,33 +39,33 @@ const _ = (key: string) => t(key, getLocale(currentLocale));
 			</div>
 
 			<div class="md:col-span-3 space-y-8 text-lg leading-relaxed text-gray-700">
-				<p class="reveal" set:html={_("about.p1")}></p>
-				<p class="reveal">{_("about.p2")}</p>
-				<p class="reveal">{_("about.p3")}</p>
+				<p class="reveal" set:html={tr("about.p1")}></p>
+				<p class="reveal">{tr("about.p2")}</p>
+				<p class="reveal">{tr("about.p3")}</p>
 
 				<div class="grid grid-cols-3 gap-6 py-8 border-y border-gray-200 reveal">
 					<div class="text-center">
 						<div class="text-4xl font-bold text-brand-teal">40+</div>
-						<div class="text-sm text-gray-500 mt-1">{_("about.stats.countries")}</div>
+						<div class="text-sm text-gray-500 mt-1">{tr("about.stats.countries")}</div>
 					</div>
 					<div class="text-center">
 						<div class="text-4xl font-bold text-brand-teal">120k</div>
-						<div class="text-sm text-gray-500 mt-1">{_("about.stats.followers")}</div>
+						<div class="text-sm text-gray-500 mt-1">{tr("about.stats.followers")}</div>
 					</div>
 					<div class="text-center">
 						<div class="text-4xl font-bold text-brand-teal">10</div>
-						<div class="text-sm text-gray-500 mt-1">{_("about.stats.languages")}</div>
+						<div class="text-sm text-gray-500 mt-1">{tr("about.stats.languages")}</div>
 					</div>
 				</div>
 
-				<p class="text-gray-500 italic reveal">{_("about.p4")}</p>
+				<p class="text-gray-500 italic reveal">{tr("about.p4")}</p>
 
 				<div class="pt-4 reveal">
 					<a
 						href={`/${currentLocale}/collaborate`}
 						class="inline-block bg-brand-teal hover:bg-brand-navy text-white text-lg px-10 py-4 rounded-full font-medium transition-all"
 					>
-						{_("about.cta")}
+						{tr("about.cta")}
 					</a>
 				</div>
 			</div>

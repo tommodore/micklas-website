@@ -6,26 +6,26 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const _ = (key: string) => t(key, getLocale(locale));
+const tr = (key: string) => t(key, getLocale(locale));
 ---
 
 <section class="py-16 border-b border-gray-100 reveal">
 	<div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
 		<div>
 			<div class="text-5xl font-bold text-brand-teal">120k+</div>
-			<div class="mt-2 text-lg">{_("stats.followers")}</div>
+			<div class="mt-2 text-lg">{tr("stats.followers")}</div>
 		</div>
 		<div>
 			<div class="text-5xl font-bold text-brand-teal">40+</div>
-			<div class="mt-2 text-lg">{_("stats.countries")}</div>
+			<div class="mt-2 text-lg">{tr("stats.countries")}</div>
 		</div>
 		<div>
 			<div class="text-5xl font-bold text-brand-teal">250+</div>
-			<div class="mt-2 text-lg">{_("stats.stories")}</div>
+			<div class="mt-2 text-lg">{tr("stats.stories")}</div>
 		</div>
 		<div>
 			<div class="text-5xl font-bold text-brand-teal">10</div>
-			<div class="mt-2 text-lg">{_("stats.languages")}</div>
+			<div class="mt-2 text-lg">{tr("stats.languages")}</div>
 		</div>
 	</div>
 </section>

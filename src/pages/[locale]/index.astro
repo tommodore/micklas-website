@@ -1,4 +1,10 @@
 ---
+import { getLocaleStaticPaths } from "../../i18n/locales";
+
+export async function getStaticPaths() {
+	return getLocaleStaticPaths();
+}
+
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
 import Hero from "../../components/Hero.astro";

@@ -1,10 +1,10 @@
-# Cloudflare Pages headers for Astro frontend
+# Cloudflare Pages headers for static Astro site
 # See: https://developers.cloudflare.com/pages/configuration/headers/
 
-/assets/*
+/_astro/*
   Cache-Control: public,max-age=31536000,immutable
 
-/_astro/*
+/images/*
   Cache-Control: public,max-age=31536000,immutable
 
 /favicon.ico

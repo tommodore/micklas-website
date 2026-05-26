@@ -1,10 +1,16 @@
 ---
+import { getLocaleStaticPaths } from "../../i18n/locales";
+
+export async function getStaticPaths() {
+	return getLocaleStaticPaths();
+}
+
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
 import { t, getLocale } from "../../i18n/translations";
 
 const currentLocale = Astro.currentLocale || "de";
-const _ = (key: string) => t(key, getLocale(currentLocale));
+const tr = (key: string) => t(key, getLocale(currentLocale));
 
 const destinations = [
 	{
@@ -81,11 +87,11 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 	<div class="max-w-7xl mx-auto px-6 py-24" id="travels-page" data-regions={JSON.stringify(regions)} data-years={JSON.stringify(years)} data-destinations={JSON.stringify(destinations)} data-locale={currentLocale}>
 		<div class="text-center mb-16">
 			<div class="inline-block px-4 py-1 bg-brand-teal/10 text-brand-teal text-sm tracking-[3px] mb-4">
-				{_("travels.badge")}
+				{tr("travels.badge")}
 			</div>
-			<h1 class="text-7xl font-bold tracking-tighter mb-6">{_("travels.title")}</h1>
+			<h1 class="text-7xl font-bold tracking-tighter mb-6">{tr("travels.title")}</h1>
 			<p class="text-2xl text-gray-600 max-w-2xl mx-auto">
-				{_("travels.subtitle")}
+				{tr("travels.subtitle")}
 			</p>
 		</div>
 
@@ -154,7 +160,7 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 		</div>
 
 		<div class="text-center mt-20 text-sm text-gray-500">
-			{_("travels.footer")}
+			{tr("travels.footer")}
 		</div>
 	</div>
 </BaseLayout>

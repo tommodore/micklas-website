@@ -1,0 +1,32 @@
+backend:
+  name: github
+  branch: main
+  repo: tommodore/micklas-website
+
+publish_mode: editorial_workflow
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: "journal"
+    label: "Travel Journal"
+    label_singular: "Post"
+    description: "Travel stories and blog posts"
+    folder: "src/content/journal"
+    create: true
+    slug: "{{fields.slug}}"
+    preview_path: "{{locale}}/journal/{{fields.slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-friendly name (e.g. lofoten-islands)", required: true }
+      - { label: "Locale", name: "locale", widget: "select", options: ["de", "en", "fr", "it", "es", "pt", "da", "sv", "no", "me"], default: "de" }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime", required: true }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false }
+      - { label: "Cover Image", name: "coverImage", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: true }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        default: ["Travel"]
+        required: false
+      - { label: "Draft", name: "draft", widget: "boolean", default: true }

@@ -29,22 +29,13 @@ export default function CollaborateForm({ locale }: Props) {
 		setIsSubmitting(true);
 		setError("");
 
+		// Static site — simulate success (no backend needed)
+		// To receive emails, sign up for Formspree (free) and replace the URL:
+		// const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+		// 	method: "POST", body: JSON.stringify({ ...formData }),
+		// 	headers: { "Accept": "application/json" }
+		// });
 		try {
-			// Send to Payload API or email service
-			const res = await fetch("/api/contact", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					...formData,
-					locale,
-				}),
-			});
-
-			if (!res.ok) throw new Error("Failed to send message");
-
-			setSubmitted(true);
-		} catch {
-			// Fall back to simulated send if API not available yet
 			await new Promise((resolve) => setTimeout(resolve, 1200));
 			setSubmitted(true);
 		} finally {
