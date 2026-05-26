@@ -1,29 +1,16 @@
-import Link from 'next/link'
 import Image from 'next/image'
-
-interface InstagramPost {
-  image: {
-    url: string
-    alt?: string
-  }
-  caption?: string
-  instagramUrl?: string
-}
 
 interface InstagramFeedProps {
   title?: string
   subtitle?: string
-  posts?: InstagramPost[]
 }
 
 export default function InstagramFeed({ 
   title = "Follow @micklas on Instagram", 
-  subtitle = "Latest moments from my travels",
-  posts = [] 
+  subtitle = "Latest moments from my travels"
 }: InstagramFeedProps) {
   
-  // Fallback demo posts if none provided
-  const displayPosts = posts.length > 0 ? posts : [
+  const displayPosts = [
     { image: { url: '/logo-micklas.png' }, caption: 'Midnight sun in Lofoten' },
     { image: { url: '/logo-micklas.png' }, caption: 'Torres del Paine at sunrise' },
     { image: { url: '/logo-micklas.png' }, caption: 'Northern Lights in Iceland' },
@@ -48,48 +35,30 @@ export default function InstagramFeed({
             target="_blank" 
             className="inline-block mt-4 text-brand-teal hover:underline font-medium"
           >
-            @micklas on Instagram →
+            @micklas on Instagram
           </a>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {displayPosts.slice(0, 6).map((post, index) => (
+          {displayPosts.map((post, index) => (
             <a 
               key={index} 
-              href={post.instagramUrl || "https://instagram.com/micklas"} 
+              href="https://instagram.com/micklas" 
               target="_blank"
               className="group relative aspect-square overflow-hidden rounded-2xl bg-gray-100 block"
             >
               <Image 
                 src={post.image.url} 
-                alt={post.caption || "Instagram post"} 
+                alt={post.caption} 
                 fill 
                 className="object-cover group-hover:scale-105 transition-transform duration-700" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              {post.caption && (
-                <div className="absolute bottom-4 left-4 right-4 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity line-clamp-2">
-                  {post.caption}
-                </div>
-              )}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="bg-white/90 text-brand-navy px-4 py-1 rounded-full text-xs font-medium tracking-wider">
-                  VIEW ON INSTAGRAM
-                </div>
+              <div className="absolute bottom-4 left-4 right-4 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity line-clamp-2">
+                {post.caption}
               </div>
-            </div>
+            </a>
           ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <a 
-            href="https://instagram.com/micklas" 
-            target="_blank"
-            className="inline-flex items-center gap-3 text-lg font-medium text-brand-teal hover:underline"
-          >
-            Follow for more travel inspiration 
-            <span className="text-xl">→</span>
-          </a>
         </div>
       </div>
     </section>
