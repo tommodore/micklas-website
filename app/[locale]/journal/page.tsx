@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { getPosts } from "../../../lib/payload-client";
+import { getPayload } from "payload";
+import config from "../../../src/payload.config";
 
 export default async function JournalPage({
 	params,
@@ -7,7 +8,17 @@ export default async function JournalPage({
 	params: Promise<{ locale: string }>;
 }) {
 	const { locale } = await params;
-	const posts = await getPosts(locale, { limit: 12 });
+	const payload = await getPayload({ config });
+
+	const { docs: posts } = await payload.find({
+		collection: "posts",
+		where: {
+			status: { equals: "published" },
+		},
+		sort: "-publishDate",
+		limit: 12,
+		locale: locale as any,
+	});
 
 	return (
 		<div className="max-w-6xl mx-auto px-6 py-24">
@@ -61,7 +72,7 @@ export default async function JournalPage({
 									{post.excerpt}
 								</p>
 								<div className="mt-6 flex items-center text-brand-teal font-medium group-hover:underline">
-									Read the full story →
+									Read the full story &rarr;
 								</div>
 							</div>
 						</Link>
