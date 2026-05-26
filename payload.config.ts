@@ -1,18 +1,6 @@
 import { buildConfig } from 'payload'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import path from 'path'
-import { fileURLToPath } from 'url'
-
-import { Posts } from './collections/Posts'
-import { Media } from './collections/Media'
-import { Pages } from './collections/Pages'
-import { Destinations } from './collections/Destinations'
-import { SiteSettings } from './globals/SiteSettings'
-import { InstagramHighlights } from './globals/InstagramHighlights'
-
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
@@ -23,8 +11,8 @@ export default buildConfig({
       favicon: '/logo-micklas.png',
     },
   },
-  collections: [Posts, Media, Pages, Destinations],
-  globals: [SiteSettings, InstagramHighlights],
+  collections: [],
+  globals: [],
   editor: lexicalEditor({}),
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
@@ -46,10 +34,6 @@ export default buildConfig({
     fallback: true,
   },
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: './payload-types.ts',
   },
-  graphQL: {
-    schemaOutputFile: path.resolve(dirname, 'generated-schema.graphql'),
-  },
-  plugins: [],
 })
