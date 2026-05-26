@@ -7,7 +7,9 @@ import { fileURLToPath } from 'url'
 import { Posts } from './collections/Posts'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
+import { Destinations } from './collections/Destinations'
 import { SiteSettings } from './globals/SiteSettings'
+import { InstagramHighlights } from './globals/InstagramHighlights'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -21,8 +23,8 @@ export default buildConfig({
       favicon: '/logo-micklas.png',
     },
   },
-  collections: [Posts, Media, Pages],
-  globals: [SiteSettings],
+  collections: [Posts, Media, Pages, Destinations],
+  globals: [SiteSettings, InstagramHighlights],
   editor: lexicalEditor({}),
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
