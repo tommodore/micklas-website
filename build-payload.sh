@@ -48,6 +48,9 @@ import { defineCloudflareConfig } from "@opennextjs/cloudflare";
 export default defineCloudflareConfig({});
 OPENNEXTCONFIG
 
+echo "💾 Saving Astro wrangler config..."
+ASTRO_WRANGLER=$(cat wrangler.jsonc 2>/dev/null || echo "")
+
 cp wrangler.payload.jsonc wrangler.jsonc
 
 echo "🔨 Building Payload CMS backend..."
@@ -56,7 +59,12 @@ node -e "const fs=require('fs');const p='node_modules/@opennextjs/cloudflare/dis
 npx opennextjs-cloudflare build --skipNextBuild
 
 echo "🧹 Cleaning up generated configs..."
-rm -f wrangler.jsonc wrangler.payload.jsonc open-next.config.ts
+rm -f wrangler.payload.jsonc open-next.config.ts
+
+if [ -n "$ASTRO_WRANGLER" ]; then
+  echo "$ASTRO_WRANGLER" > wrangler.jsonc
+  echo "🔁 Restored Astro wrangler config"
+fi
 
 echo "✅ Payload backend built successfully!"
 echo "   ➜ .open-next/ directory is ready for deployment"
