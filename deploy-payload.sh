@@ -52,8 +52,8 @@ ASTRO_WRANGLER=$(cat wrangler.jsonc 2>/dev/null || echo "")
 
 cp wrangler.payload.jsonc wrangler.jsonc
 
-echo "🧹 Cleaning Astro build artifacts (dist/)..."
-rm -rf dist/ .astro/ .next/
+echo "🧹 Cleaning old build artifacts..."
+rm -rf dist/ .astro/ .next/ .wrangler/
 
 echo "🔨 Building Payload CMS backend..."
 NEXT_PRIVATE_STANDALONE=true npx next build
