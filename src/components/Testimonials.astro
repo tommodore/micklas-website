@@ -10,37 +10,32 @@ const { locale } = Astro.props;
 const tr = (key: string) => t(key, getLocale(locale));
 ---
 
-<section class="bg-gray-50 py-24 reveal">
-	<div class="max-w-6xl mx-auto px-6">
-		<div class="text-center mb-16">
-			<div class="inline-block px-4 py-1 bg-brand-teal/10 text-brand-teal text-sm tracking-[3px] mb-4">
-				{tr("testimonials.badge")}
-			</div>
-			<h2 class="text-5xl font-bold tracking-tight">{tr("testimonials.title")}</h2>
-		</div>
+<section class="py-xxl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto reveal">
+	<div class="text-center mb-xl">
+		<h2 class="font-headline-xl text-headline-xl text-on-surface mb-sm">{tr("testimonials.title")}</h2>
+	</div>
 
-		<div class="grid md:grid-cols-3 gap-8">
-			{testimonials.map((testimonial) => (
-				<div class="bg-white p-10 rounded-3xl border border-gray-100">
-					<div class="flex mb-6">
-						{[...Array(5)].map((_, i) => (
-							<span class="text-brand-teal text-xl">★</span>
-						))}
+	<div class="grid md:grid-cols-3 gap-gutter">
+		{testimonials.map((testimonial) => (
+			<div class="glass-panel rounded-xl p-lg flex flex-col gap-md">
+				<div class="flex gap-xs">
+					{[...Array(5)].map((_, i) => (
+						<span class="text-secondary text-sm">★</span>
+					))}
+				</div>
+				<blockquote class="font-body-md text-body-md text-on-surface-variant leading-relaxed flex-1">
+					&ldquo;{testimonial.quote}&rdquo;
+				</blockquote>
+				<div class="flex items-center gap-sm pt-sm border-t border-outline-variant/10">
+					<div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary font-bold font-headline-lg-mobile">
+						{testimonial.name.charAt(0)}
 					</div>
-					<blockquote class="text-lg leading-relaxed text-gray-700 mb-8">
-						&ldquo;{testimonial.quote}&rdquo;
-					</blockquote>
-					<div class="flex items-center gap-4">
-						<div class="w-14 h-14 rounded-full bg-brand-teal/20 flex items-center justify-center text-brand-teal font-bold text-xl">
-							{testimonial.name.charAt(0)}
-						</div>
-						<div>
-							<div class="font-semibold">{testimonial.name}</div>
-							<div class="text-sm text-gray-500">{testimonial.role}</div>
-						</div>
+					<div>
+						<div class="font-label-bold text-label-bold text-on-surface">{testimonial.name}</div>
+						<div class="font-label-sm text-label-sm text-on-surface-variant">{testimonial.role}</div>
 					</div>
 				</div>
-			))}
-		</div>
+			</div>
+		))}
 	</div>
 </section>

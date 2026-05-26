@@ -8,71 +8,65 @@ interface Props {
 const { locale } = Astro.props;
 const tr = (key: string) => t(key, getLocale(locale));
 
-const featuredDestinations = [
+const destinations = [
 	{
-		slug: "lofoten-norway",
-		title: "Lofoten Islands",
-		country: "Norway",
-		year: "2026",
-		description: "Breathtaking fjords, dramatic mountains, and the magical Northern Lights.",
+		slug: "iceland",
+		title: "Iceland",
+		subtitle: "The Land of Fire and Ice",
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtUQwWIUsGhGPbXHskZ-N2GeBsLL-xo3v1o5uyoH2d_9pRDJK0LCDzYKkvWvq6Kv_G64UfIBGYO64214J7v40GPat-4JTxjOQbaZYih_jdNpq7kyzSfSFwMjbyDX8KeEe9dvGaBiM4MjMNaPaOk9hYnlU5ldsLeoC9MxQhZgqfDH1s9Vz5gMOyn2WZw1DL9UaCxz3KOHQysiIRvSPJRzdnPDyF0-G_mFGcn5gPAL1qHF8SeAAI-nmYifij0QNK5obzIcQskYJMlBxo",
+		tag: "Adventure",
 	},
 	{
-		slug: "patagonia-chile",
-		title: "Torres del Paine",
-		country: "Chile",
-		year: "2026",
-		description: "Epic granite towers and endless wilderness in Patagonia.",
+		slug: "bali",
+		title: "Bali",
+		subtitle: "Tropical Serenity & Culture",
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBII5cmm6NpJ4G13DBFvjzLd27smjG_bHwhi-cHWGdioNwh-40Cg03C7z-rUu4ItiaiWfRbjPg1kfqichj1Mtq1TlhF_fJCV-Am_iZLTCWe7yUXUzAKa57zMh1ZhWTM1HJv2zoz5ogP5DOxD0jiFoPC9maBGPMhhYZm_JD3zOkZx0uRkP4gjF4ic7kWtPPQrsfN2E_D4x8t38CrKfYt-uooJO2Roo-7ur6CstJjjIVB-zf7rCdAocrZizsVdz0O8xJmiOsmxtoIYQ82",
+		tag: "Luxury",
 	},
 	{
-		slug: "iceland-winter",
-		title: "Iceland Winter",
-		country: "Iceland",
-		year: "2025",
-		description: "Northern Lights and ice caves in the land of fire and ice.",
+		slug: "amalfi",
+		title: "Amalfi Coast",
+		subtitle: "Mediterranean Elegance",
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAaeukhpldN4cIiLAq_PxLtYymheJ5pvzIAUmFmFqcXE5D1gGewap5gbWuapcDdXp14gUmEe59n-x291mK8jhE6th6M2C2a4QzQnHySNu-bpES7tQZ1WuDehbH6XN2rTRivR5K15LQZjTmgEfZfYyggmy05po-cY338tE1qIdjOJZAWvC19ikpF0MacMoaZcAxeOLErPMPiG-AzMPCmxuijFzcIAqQ7vrfi-FMsM8pASO5uRPC9yDwLA-eU96bMmkZZt9idoFLjcI15",
+		tag: "Nature",
 	},
 ];
 ---
 
-<section class="max-w-6xl mx-auto px-6 py-24 reveal">
-	<div class="text-center mb-16">
-		<div class="inline-block px-4 py-1 bg-brand-teal/10 text-brand-teal text-sm tracking-widest mb-4">
-			{tr("featured.badge")}
+<section class="py-xxl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto reveal">
+	<div class="flex flex-col md:flex-row justify-between items-end mb-xl gap-sm">
+		<div>
+			<h2 class="font-headline-xl text-headline-xl text-on-surface mb-sm">{tr("featured.title")}</h2>
+			<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">{tr("featured.subtitle")}</p>
 		</div>
-		<h2 class="text-5xl font-bold tracking-tight">{tr("featured.title")}</h2>
-		<p class="mt-4 text-xl text-gray-600 max-w-md mx-auto">
-			{tr("featured.subtitle")}
-		</p>
+		<div class="flex gap-4">
+			{destinations.map((dest) => (
+				<button class="px-4 py-2 rounded-full border border-secondary text-secondary font-label-bold text-label-bold hover:bg-secondary/10 transition-colors">
+					{dest.tag}
+				</button>
+			))}
+		</div>
 	</div>
 
-	<div class="grid md:grid-cols-3 gap-8">
-		{featuredDestinations.map((dest) => (
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+		{destinations.map((dest) => (
 			<a
 				href={`/${locale}/travels`}
-				class="group block overflow-hidden rounded-2xl border border-gray-100 hover:shadow-xl transition-all"
+				class="group relative rounded-xl overflow-hidden aspect-[4/5] cursor-pointer block"
 			>
-				<div class="h-80 bg-gradient-to-br from-brand-navy/70 to-brand-navy relative">
-					<div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60"></div>
-					<div class="absolute bottom-6 left-6 text-white">
-						<div class="text-sm opacity-75">{dest.country.toUpperCase()} &bull; {dest.year}</div>
-						<div class="text-3xl font-semibold">{dest.title}</div>
-					</div>
-				</div>
-				<div class="p-6">
-					<p class="text-gray-600 line-clamp-3">{dest.description}</p>
-					<div class="mt-4 text-brand-teal font-medium group-hover:underline">
-						{tr("featured.read")}
-					</div>
+				<img
+					src={dest.image}
+					alt={dest.title}
+					class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+				/>
+				<div class="absolute inset-0 cinematic-overlay flex flex-col justify-end p-lg">
+					<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-xs">{dest.title}</h3>
+					<p class="font-body-md text-body-md text-on-surface-variant mb-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">{dest.subtitle}</p>
+					<span class="inline-flex items-center gap-2 text-secondary font-label-bold text-label-bold hover:text-secondary-fixed transition-colors">
+						{tr("featured.read")} <span class="material-symbols-outlined text-sm">arrow_forward</span>
+					</span>
 				</div>
 			</a>
 		))}
-	</div>
-
-	<div class="text-center mt-12">
-		<a
-			href={`/${locale}/travels`}
-			class="inline-flex items-center text-lg font-medium text-brand-teal hover:underline"
-		>
-			{tr("featured.all")}
-		</a>
 	</div>
 </section>

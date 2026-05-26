@@ -1,5 +1,6 @@
 ---
 import { t, getLocale } from "../i18n/translations";
+import { getAllLocales } from "../i18n/locales";
 
 interface Props {
 	locale: string;
@@ -7,51 +8,41 @@ interface Props {
 
 const { locale } = Astro.props;
 const tr = (key: string) => t(key, getLocale(locale));
+const locales = getAllLocales();
 ---
 
-<section class="relative h-screen flex items-center justify-center bg-brand-navy text-white overflow-hidden">
-	<div class="absolute inset-0 bg-black/40 z-10"></div>
+<section class="relative h-[90vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
+	<div class="absolute inset-0 z-0">
+		<img
+			src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvuppMDaUDJLENPq8-FbhYNI3cq1H8E5LYyF3gRiE_VR602gr4JRMoOVlv0N4KNe53TETdWNxNgdNTMzJEmp6r1YSVAbwiGaKNuS6exNoFpDstMxkRdXvZszc5kKFmM0HQf5xD5mXZADfV2ZlOX8yM8huZI0sueVSJevaE6cmaIZ6M7N7bTGfMEw2jzZR1fhXgjyF4XcA0YqlY-YYoyoMz4ySrpCTGQ1al9_kEYS9SjP9veDfJ0H94rgysF5E3W9ctaeFK-ZepyIvn"
+			alt="Cinematic Hero Background"
+			class="w-full h-full object-cover"
+		/>
+		<div class="absolute inset-0 cinematic-overlay"></div>
+	</div>
 
-	<div class="relative z-20 text-center px-6 max-w-5xl">
-		<div class="mb-8 flex justify-center hero-fade-in">
+	<div class="relative z-10 flex flex-col items-center text-center px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto mt-16">
+		<div class="w-48 h-48 md:w-64 md:h-64 mb-lg rounded-full overflow-hidden border-4 border-surface/20 shadow-2xl glass-panel p-2 hero-fade-in">
 			<img
 				src="/logo-micklas.jpg"
 				alt="Micklas Travels Logo"
-				width="180"
-				height="180"
-				class="drop-shadow-2xl"
+				class="w-full h-full object-contain rounded-full"
 			/>
 		</div>
 
-		<h1 class="text-7xl md:text-8xl font-bold tracking-tighter mb-6 hero-fade-in-delay-1">
+		<h1 class="font-display-lg text-display-lg text-white mb-sm hero-fade-in-delay-1">
 			{tr("hero.title")}
 		</h1>
 
-		<p class="text-2xl md:text-3xl text-brand-teal mb-4 font-light hero-fade-in-delay-2">
+		<p class="font-body-xl text-body-xl text-on-surface-variant mb-xl max-w-2xl hero-fade-in-delay-2">
 			{tr("hero.subtitle")}
 		</p>
-		<p class="text-xl md:text-2xl max-w-2xl mx-auto mb-12 text-white/90 hero-fade-in-delay-2">
-			{tr("hero.description")}
-		</p>
 
-		<div class="flex flex-col sm:flex-row gap-4 justify-center hero-fade-in-delay-2">
-			<a
-				href={`/${locale}/about`}
-				class="inline-block bg-brand-teal hover:bg-white hover:text-brand-navy text-white px-10 py-4 rounded-full font-medium transition-all text-lg"
-			>
-				{tr("hero.cta.about")}
-			</a>
-			<a
-				href={`/${locale}/collaborate`}
-				class="inline-block bg-white text-brand-navy hover:bg-brand-teal hover:text-white text-lg px-10 py-4 rounded-full font-medium transition-all"
-			>
-				{tr("hero.cta.collaborate")}
-			</a>
-		</div>
-	</div>
-
-	<div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
-		<div class="text-sm tracking-[4px] mb-2 text-white/70">{tr("hero.scroll")}</div>
-		<div class="w-px h-12 bg-white/50"></div>
+		<a
+			href={`/${locale}/collaborate`}
+			class="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-label-bold text-label-bold text-lg hover:bg-secondary-fixed transition-colors shadow-lg shadow-secondary/20 hero-fade-in-delay-2"
+		>
+			{tr("hero.cta.collaborate")}
+		</a>
 	</div>
 </section>

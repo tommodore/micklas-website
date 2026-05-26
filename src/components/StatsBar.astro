@@ -9,23 +9,25 @@ const { locale } = Astro.props;
 const tr = (key: string) => t(key, getLocale(locale));
 ---
 
-<section class="py-16 border-b border-gray-100 reveal">
-	<div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-		<div>
-			<div class="text-5xl font-bold text-brand-teal">120k+</div>
-			<div class="mt-2 text-lg">{tr("stats.followers")}</div>
-		</div>
-		<div>
-			<div class="text-5xl font-bold text-brand-teal">40+</div>
-			<div class="mt-2 text-lg">{tr("stats.countries")}</div>
-		</div>
-		<div>
-			<div class="text-5xl font-bold text-brand-teal">250+</div>
-			<div class="mt-2 text-lg">{tr("stats.stories")}</div>
-		</div>
-		<div>
-			<div class="text-5xl font-bold text-brand-teal">10</div>
-			<div class="mt-2 text-lg">{tr("stats.languages")}</div>
+<section class="bg-surface-container-low border-y border-outline-variant/10 py-lg reveal">
+	<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+		<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter text-center">
+			<div class="flex flex-col gap-base">
+				<span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-secondary">120k+</span>
+				<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">{tr("stats.followers")}</span>
+			</div>
+			<div class="flex flex-col gap-base">
+				<span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-secondary">40+</span>
+				<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">{tr("stats.countries")}</span>
+			</div>
+			<div class="flex flex-col gap-base">
+				<span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-secondary">150+</span>
+				<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">{tr("stats.stories")}</span>
+			</div>
+			<div class="flex flex-col gap-base">
+				<span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-secondary">5M+</span>
+				<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">{tr("stats.languages")}</span>
+			</div>
 		</div>
 	</div>
 </section>

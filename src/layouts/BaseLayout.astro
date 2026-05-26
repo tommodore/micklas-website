@@ -1,4 +1,7 @@
 ---
+import { t, getLocale } from "../i18n/translations";
+import { getAllLocales } from "../i18n/locales";
+
 export interface Props {
 	title: string;
 	description?: string;
@@ -7,97 +10,482 @@ export interface Props {
 
 const { title, description } = Astro.props;
 const currentLocale = Astro.currentLocale || "de";
+const tr = (key: string) => t(key, getLocale(currentLocale));
+const year = new Date().getFullYear();
 ---
 
 <!doctype html>
-<html lang={currentLocale}>
+<html class="dark" lang={currentLocale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description || "Micklas Travels — Travel Photography by Michael Glashauser. 120k+ Instagram community. Partner for Social Media Advertising."} />
-		<meta name="theme-color" content="#142A64" />
+		<meta name="theme-color" content="#121317" />
+		<meta name="color-scheme" content="dark" />
 		<link rel="icon" href="/logo-micklas.jpg" />
+
+		{/* Google Fonts: Playfair Display (600,700), Inter (400,500,600), Material Symbols Outlined */}
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+			rel="stylesheet"
+		/>
+
 		<title>{title} | Micklas Travels</title>
 		<slot name="head" />
 	</head>
-	<body class="bg-white text-brand-navy font-sans antialiased">
-		<!-- Top Navigation -->
-		<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
-			<div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-				<a href={`/${currentLocale}/`} class="flex items-center gap-3">
-					<img src="/logo-micklas.jpg" alt="Micklas" class="h-9 w-9" />
-					<span class="font-semibold text-xl tracking-tight">Micklas Travels</span>
+	<body class="bg-background text-on-surface text-body-md font-body antialiased min-h-screen flex flex-col">
+		{/* ==============================
+					FIXED TOP HEADER — Glass Panel
+		============================== */}
+		<header class="fixed top-0 left-0 right-0 z-50 glass-panel h-20">
+			<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-full flex items-center justify-between">
+				{/* Left: Logo + Brand */}
+				<a href={`/${currentLocale}/`} class="flex items-center gap-3 group">
+					<img
+						src="/logo-micklas.jpg"
+						alt="Micklas Travels"
+						class="h-10 w-10 rounded-full ring-2 ring-surface-container-highest/50 group-hover:ring-secondary/50 transition-all duration-300"
+					/>
+					<span class="hidden sm:block font-heading text-headline-lg-mobile md:text-headline-lg text-on-surface font-semibold tracking-tight">
+						Micklas Travels
+					</span>
 				</a>
 
-				<div class="hidden md:flex items-center gap-10 text-sm font-medium">
-					<a href={`/${currentLocale}/about`} class="hover:text-brand-teal transition-colors">
-						About
+				{/* Center: Desktop Navigation */}
+				<nav class="hidden md:flex items-center gap-8">
+					<a
+						href={`/${currentLocale}/travels`}
+						class="font-label-bold text-label-bold uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300"
+					>
+						{tr("nav.travels")}
 					</a>
-					<a href={`/${currentLocale}/travels`} class="hover:text-brand-teal transition-colors">
-						Travels
+					<a
+						href={`/${currentLocale}/journal`}
+						class="font-label-bold text-label-bold uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300"
+					>
+						{tr("nav.journal")}
 					</a>
-					<a href={`/${currentLocale}/journal`} class="hover:text-brand-teal transition-colors">
-						Journal
+					<a
+						href={`/${currentLocale}/about`}
+						class="font-label-bold text-label-bold uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300"
+					>
+						{tr("nav.about")}
 					</a>
-					<a href={`/${currentLocale}/collaborate`} class="hover:text-brand-teal transition-colors">
-						Collaborate
+					<a
+						href={`/${currentLocale}/collaborate`}
+						class="font-label-bold text-label-bold uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300"
+					>
+						{tr("nav.collaborate")}
 					</a>
-				</div>
+				</nav>
 
-				<div class="flex items-center gap-4">
+				{/* Right: Language Switcher + CTA */}
+				<div class="flex items-center gap-3 md:gap-4">
 					<slot name="language-switcher" />
+					<a
+						href={`/${currentLocale}/collaborate`}
+						class="hidden sm:inline-flex bg-secondary text-on-secondary font-label-bold text-label-bold uppercase px-5 py-2.5 rounded-lg hover:brightness-110 transition-all duration-300 shadow-lg shadow-secondary/20"
+					>
+						{tr("nav.collaborate")}
+					</a>
 				</div>
-			</div>
-		</nav>
 
-		<main class="pt-20">
+				{/* Mobile hamburger — kept minimal for now, use slot for custom implementations */}
+				<button
+					id="mobile-menu-toggle"
+					class="md:hidden flex items-center justify-center w-10 h-10 text-on-surface hover:text-secondary transition-colors"
+					aria-label="Toggle navigation menu"
+					type="button"
+				>
+					<span class="material-symbols-outlined text-2xl">menu</span>
+				</button>
+			</div>
+
+			{/* Mobile navigation drawer — hidden by default, toggled via script */}
+			<nav
+				id="mobile-nav"
+				class="md:hidden absolute top-full left-0 right-0 glass-panel border-t border-outline-variant/30 hidden flex-col items-stretch px-margin-mobile py-md gap-2"
+			>
+				<a
+					href={`/${currentLocale}/travels`}
+					class="font-label-bold text-label-bold uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300 px-4 py-3 rounded-lg hover:bg-surface-container-high"
+				>
+					{tr("nav.travels")}
+				</a>
+				<a
+					href={`/${currentLocale}/journal`}
+					class="font-label-bold text-label-bold uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300 px-4 py-3 rounded-lg hover:bg-surface-container-high"
+				>
+					{tr("nav.journal")}
+				</a>
+				<a
+					href={`/${currentLocale}/about`}
+					class="font-label-bold text-label-bold uppercase text-on-surface-variant hover:text-secondary transition-colors duration-300 px-4 py-3 rounded-lg hover:bg-surface-container-high"
+				>
+					{tr("nav.about")}
+				</a>
+				<a
+					href={`/${currentLocale}/collaborate`}
+					class="font-label-bold text-label-bold uppercase bg-secondary text-on-secondary px-4 py-3 rounded-lg text-center hover:brightness-110 transition-all"
+				>
+					{tr("nav.collaborate")}
+				</a>
+				<div class="pt-2 border-t border-outline-variant/30 mt-2">
+					<slot name="language-switcher-mobile" />
+				</div>
+			</nav>
+		</header>
+
+		{/* ==============================
+					MAIN CONTENT
+		============================== */}
+		<main class="flex-grow pt-20">
 			<slot />
 		</main>
 
-		<!-- Footer -->
-		<footer class="bg-white border-t py-12 text-sm text-gray-500">
-			<div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-				<div>© {new Date().getFullYear()} Micklas Travels. All rights reserved.</div>
-				<div class="flex gap-6">
-					<a href={`/${currentLocale}/impressum`} class="hover:text-brand-navy">Impressum</a>
-					<a href={`/${currentLocale}/privacy`} class="hover:text-brand-navy">Privacy Policy</a>
+		{/* ==============================
+					FOOTER
+		============================== */}
+		<footer>
+			{/* --- Instagram CTA Section --- */}
+			<section class="bg-surface-container py-xxl md:py-xxl lg:py-xxl">
+				<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop text-center">
+					<h2 class="font-heading text-headline-xl text-on-surface mb-sm">
+						{tr("instagram.title")}
+					</h2>
+					<p class="text-body-xl text-on-surface-variant max-w-2xl mx-auto mb-lg">
+						{tr("instagram.subtitle")}
+					</p>
+					<a
+						href="https://www.instagram.com/micklas/"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="inline-flex items-center gap-2 bg-secondary text-on-secondary font-label-bold text-label-bold uppercase px-8 py-4 rounded-lg hover:brightness-110 transition-all duration-300 shadow-lg shadow-secondary/20"
+					>
+						<span class="material-symbols-outlined text-xl">photo_camera</span>
+						{tr("instagram.follow")}
+					</a>
 				</div>
-				<div>Built with ❤️ for the travel community</div>
-			</div>
-		</footer>
-	<script>
-		// Scroll reveal observer
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						entry.target.classList.add("visible");
-						observer.unobserve(entry.target);
-					}
-				});
-			},
-			{ threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
-		);
+			</section>
 
-		document.addEventListener("DOMContentLoaded", () => {
-			document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-		});
-	</script>
-</body>
+			{/* --- Bottom Footer --- */}
+			<section class="bg-surface-container-lowest py-xl md:py-xxl">
+				<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+					{/* 4-Column Grid (Desktop) */}
+					<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg lg:gap-xl pb-lg lg:pb-xl border-b border-outline-variant/20">
+						{/* Column 1: Brand */}
+						<div class="space-y-md">
+							<div class="flex items-center gap-3">
+								<img
+									src="/logo-micklas.jpg"
+									alt="Micklas Travels"
+									class="h-10 w-10 rounded-full"
+								/>
+								<span class="font-heading text-headline-lg-mobile text-on-surface font-semibold">
+									Micklas Travels
+								</span>
+							</div>
+							<p class="text-body-md text-on-surface-variant leading-relaxed">
+								{tr("footer.tagline")}
+							</p>
+						</div>
+
+						{/* Column 2: Navigation */}
+						<div class="space-y-md">
+							<h3 class="font-label-bold text-label-bold uppercase text-outline-variant">
+								{currentLocale === "de" ? "Navigation" : "Navigation"}
+							</h3>
+							<ul class="space-y-2">
+								<li>
+									<a href={`/${currentLocale}/travels`} class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+										{tr("nav.travels")}
+									</a>
+								</li>
+								<li>
+									<a href={`/${currentLocale}/journal`} class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+										{tr("nav.journal")}
+									</a>
+								</li>
+								<li>
+									<a href={`/${currentLocale}/about`} class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+										{tr("nav.about")}
+									</a>
+								</li>
+								<li>
+									<a href={`/${currentLocale}/collaborate`} class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+										{tr("nav.collaborate")}
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						{/* Column 3: Legal */}
+						<div class="space-y-md">
+							<h3 class="font-label-bold text-label-bold uppercase text-outline-variant">
+								{currentLocale === "de" ? "Rechtliches" : "Legal"}
+							</h3>
+							<ul class="space-y-2">
+								<li>
+									<a href={`/${currentLocale}/impressum`} class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+										{tr("nav.impressum")}
+									</a>
+								</li>
+								<li>
+									<a href={`/${currentLocale}/privacy`} class="text-on-surface-variant hover:text-secondary transition-colors duration-300">
+										{tr("nav.privacy")}
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						{/* Column 4: Social + Contact */}
+						<div class="space-y-md">
+							<h3 class="font-label-bold text-label-bold uppercase text-outline-variant">
+								{currentLocale === "de" ? "Social" : "Social"}
+							</h3>
+							<ul class="space-y-2">
+								<li>
+									<a
+										href="https://www.instagram.com/micklas/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="flex items-center gap-2 text-on-surface-variant hover:text-secondary transition-colors duration-300"
+									>
+										<span class="material-symbols-outlined text-lg">photo_camera</span>
+										Instagram / @micklas
+									</a>
+								</li>
+								<li>
+									<a
+										href="mailto:hello@micklas.travel"
+										class="flex items-center gap-2 text-on-surface-variant hover:text-secondary transition-colors duration-300"
+									>
+										<span class="material-symbols-outlined text-lg">mail</span>
+										hello@micklas.travel
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					{/* Copyright bar */}
+					<div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-lg text-sm text-on-surface-variant">
+						<p>&copy; {year} Micklas Travels. {tr("footer.rights")}</p>
+						<p class="text-outline-variant text-label-sm">
+							{tr("footer.tagline")}
+						</p>
+					</div>
+				</div>
+			</section>
+		</footer>
+
+		{/* ==============================
+					SCRIPTS
+		============================== */}
+		<script>
+			// Mobile navigation toggle
+			const toggleBtn = document.getElementById("mobile-menu-toggle");
+			const mobileNav = document.getElementById("mobile-nav");
+
+			if (toggleBtn && mobileNav) {
+				toggleBtn.addEventListener("click", () => {
+					const isHidden = mobileNav.classList.contains("hidden");
+					mobileNav.classList.toggle("hidden", !isHidden);
+					mobileNav.classList.toggle("flex", isHidden);
+
+					// Update aria-label and icon
+					const icon = toggleBtn.querySelector(".material-symbols-outlined");
+					if (icon) {
+						icon.textContent = isHidden ? "close" : "menu";
+					}
+					toggleBtn.setAttribute("aria-expanded", String(isHidden));
+				});
+
+				// Close mobile nav when clicking a link inside it
+				mobileNav.querySelectorAll("a").forEach((link) => {
+					link.addEventListener("click", () => {
+						mobileNav.classList.add("hidden");
+						mobileNav.classList.remove("flex");
+						const icon = toggleBtn.querySelector(".material-symbols-outlined");
+						if (icon) icon.textContent = "menu";
+						toggleBtn.setAttribute("aria-expanded", "false");
+					});
+				});
+			}
+
+			// Scroll reveal observer
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add("visible");
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{ threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
+			);
+
+			// Observe all .reveal elements once DOM is ready
+			if (document.readyState === "loading") {
+				document.addEventListener("DOMContentLoaded", () => {
+					document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+				});
+			} else {
+				document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+			}
+		</script>
+	</body>
 </html>
 
 <style is:global>
 	@import "tailwindcss";
+
+	/* ==============================
+			 DESIGN SYSTEM THEME TOKENS
+	============================== */
 	@theme {
-		--color-brand-navy: #142A64;
-		--color-brand-teal: #30BB9A;
+		/* --- Colors (Material 3 inspired dark palette) --- */
+		--color-surface: #121317;
+		--color-surface-dim: #121317;
+		--color-surface-bright: #38393d;
+		--color-surface-container-lowest: #0d0e12;
+		--color-surface-container-low: #1b1b1f;
+		--color-surface-container: #1f1f24;
+		--color-surface-container-high: #292a2e;
+		--color-surface-container-highest: #343439;
+		--color-on-surface: #e3e2e7;
+		--color-on-surface-variant: #c5c6d1;
+		--color-primary: #b5c4ff;
+		--color-on-primary: #172c66;
+		--color-primary-container: #142a64;
+		--color-on-primary-container: #8093d3;
+		--color-secondary: #5adcb9;
+		--color-on-secondary: #00382c;
+		--color-secondary-container: #00a787;
+		--color-on-secondary-container: #003328;
+		--color-tertiary: #ffb690;
+		--color-error: #ffb4ab;
+		--color-outline: #8f909b;
+		--color-outline-variant: #444650;
+		--color-background: #121317;
+		--color-on-background: #e3e2e7;
+
+		/* --- Font Families --- */
+		--font-heading: "Playfair Display", serif;
+		--font-body: "Inter", sans-serif;
+
+		/* --- Typography: Display --- */
+		--text-display-lg: 64px;
+		--text-display-lg--line-height: 72px;
+		--text-display-lg--font-weight: 700;
+		--text-display-lg--letter-spacing: -0.02em;
+
+		/* --- Typography: Headlines --- */
+		--text-headline-xl: 48px;
+		--text-headline-xl--line-height: 56px;
+		--text-headline-xl--font-weight: 700;
+
+		--text-headline-lg: 32px;
+		--text-headline-lg--line-height: 40px;
+		--text-headline-lg--font-weight: 600;
+
+		--text-headline-lg-mobile: 28px;
+		--text-headline-lg-mobile--line-height: 36px;
+		--text-headline-lg-mobile--font-weight: 600;
+
+		/* --- Typography: Body --- */
+		--text-body-xl: 20px;
+		--text-body-xl--line-height: 32px;
+		--text-body-xl--font-weight: 400;
+
+		--text-body-md: 16px;
+		--text-body-md--line-height: 24px;
+		--text-body-md--font-weight: 400;
+
+		/* --- Typography: Labels --- */
+		--text-label-bold: 14px;
+		--text-label-bold--line-height: 20px;
+		--text-label-bold--font-weight: 600;
+		--text-label-bold--letter-spacing: 0.05em;
+
+		--text-label-sm: 12px;
+		--text-label-sm--line-height: 16px;
+		--text-label-sm--font-weight: 500;
+
+		/* --- Custom Spacing --- */
+		--spacing-base: 4px;
+		--spacing-xs: 8px;
+		--spacing-sm: 16px;
+		--spacing-md: 24px;
+		--spacing-lg: 32px;
+		--spacing-xl: 48px;
+		--spacing-xxl: 64px;
+		--spacing-gutter: 24px;
+		--spacing-margin-mobile: 16px;
+		--spacing-margin-desktop: 64px;
+
+		/* --- Border Radius --- */
+		--radius-sm: 0.25rem;
+		--radius-default: 0.5rem;
+		--radius-md: 0.75rem;
+		--radius-xl: 1.5rem;
+		--radius-full: 9999px;
 	}
 
-	/* Scroll reveal animation */
+	/* ==============================
+			 BASE STYLES
+	============================== */
+
+	/* Smooth scrolling for the whole page */
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	/* ==============================
+			 CUSTOM UTILITY CLASSES
+	============================== */
+
+	/* Cinematic gradient overlay — darkens bottom of hero images */
+	.cinematic-overlay {
+		background: linear-gradient(
+			to bottom,
+			rgba(13, 27, 64, 0) 0%,
+			rgba(13, 27, 64, 0.9) 100%
+		);
+	}
+
+	/* Glass panel effect — frosted glass with subtle border */
+	.glass-panel {
+		background: rgba(18, 19, 23, 0.6);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	/* Border fix for glass-panel */
+	.glass-panel-borderless {
+		background: rgba(18, 19, 23, 0.6);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+	}
+
+	/* ==============================
+			 SCROLL REVEAL ANIMATION
+	============================== */
+
 	.reveal {
 		opacity: 0;
 		transform: translateY(30px);
-		transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+		transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+			transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
 	.reveal.visible {
@@ -105,19 +493,23 @@ const currentLocale = Astro.currentLocale || "de";
 		transform: translateY(0);
 	}
 
-	/* Hero intro animation */
+	/* ==============================
+			 HERO FADE-IN ANIMATIONS
+	============================== */
+
 	.hero-fade-in {
+		opacity: 0;
 		animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 	}
 
 	.hero-fade-in-delay-1 {
-		animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 		opacity: 0;
+		animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 	}
 
 	.hero-fade-in-delay-2 {
-		animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
 		opacity: 0;
+		animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
 	}
 
 	@keyframes heroFadeIn {
@@ -131,16 +523,23 @@ const currentLocale = Astro.currentLocale || "de";
 		}
 	}
 
-	/* Card hover effect */
+	/* ==============================
+			 CARD HOVER EFFECT
+	============================== */
+
 	.card-hover {
-		transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+		transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+			box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
 	.card-hover:hover {
 		transform: translateY(-4px);
 	}
 
-	/* Counter animation */
+	/* ==============================
+			 STAT COUNTER ANIMATION
+	============================== */
+
 	.stat-number {
 		display: inline-block;
 		animation: countIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -155,5 +554,107 @@ const currentLocale = Astro.currentLocale || "de";
 			opacity: 1;
 			transform: scale(1);
 		}
+	}
+
+	/* ==============================
+			 MATERIAL SYMBOLS
+	============================== */
+
+	.material-symbols-outlined {
+		font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+	}
+
+	/* ==============================
+			 FOCUS VISIBLE (Accessibility)
+	============================== */
+
+	a:focus-visible,
+	button:focus-visible,
+	input:focus-visible,
+	textarea:focus-visible {
+		outline: 2px solid var(--color-secondary);
+		outline-offset: 2px;
+		border-radius: var(--radius-default);
+	}
+
+	/* ==============================
+			 DARK MODE PROSE (Legal pages)
+	============================== */
+
+	.prose {
+		color: var(--color-on-surface);
+		max-width: 65ch;
+	}
+
+	.prose h1 {
+		font-family: 'Playfair Display', serif;
+		font-size: 48px;
+		font-weight: 700;
+		line-height: 56px;
+		color: var(--color-on-surface);
+		margin-bottom: 24px;
+	}
+
+	.prose h2 {
+		font-family: 'Playfair Display', serif;
+		font-size: 32px;
+		font-weight: 600;
+		line-height: 40px;
+		color: var(--color-on-surface);
+		margin-top: 32px;
+		margin-bottom: 16px;
+	}
+
+	.prose h3 {
+		font-family: 'Playfair Display', serif;
+		font-size: 28px;
+		font-weight: 600;
+		line-height: 36px;
+		color: var(--color-on-surface);
+		margin-top: 24px;
+		margin-bottom: 8px;
+	}
+
+	.prose p {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 24px;
+		color: var(--color-on-surface-variant);
+		margin-bottom: 16px;
+	}
+
+	.prose a {
+		color: var(--color-secondary);
+		text-decoration: underline;
+		text-underline-offset: 4px;
+		transition: color 0.2s;
+	}
+
+	.prose a:hover {
+		color: var(--color-secondary-fixed);
+	}
+
+	.prose strong {
+		color: var(--color-on-surface);
+		font-weight: 600;
+	}
+
+	.prose blockquote {
+		border-left: 3px solid var(--color-secondary);
+		padding-left: 24px;
+		margin: 24px 0;
+		color: var(--color-on-surface-variant);
+		font-style: italic;
+	}
+
+	.prose ul, .prose ol {
+		padding-left: 24px;
+		margin-bottom: 16px;
+		color: var(--color-on-surface-variant);
+	}
+
+	.prose li {
+		margin-bottom: 8px;
 	}
 </style>

@@ -9,17 +9,15 @@ const { locale } = Astro.props;
 const tr = (key: string) => t(key, getLocale(locale));
 ---
 
-<section class="bg-brand-navy text-white py-24 reveal">
-	<div class="max-w-3xl mx-auto text-center px-6">
-		<h2 class="text-5xl font-bold tracking-tight mb-6">{tr("cta.title")}</h2>
-		<p class="text-xl text-white/80 mb-10 max-w-lg mx-auto">
-			{tr("cta.description")}
-		</p>
-		<a
-			href={`/${locale}/collaborate`}
-			class="inline-block bg-brand-teal hover:bg-white hover:text-brand-navy text-white text-lg px-14 py-4 rounded-full font-medium transition-all"
-		>
-			{tr("cta.button")}
-		</a>
-	</div>
+<section class="py-xxl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto text-center reveal">
+	<h2 class="font-headline-xl text-headline-xl text-on-surface mb-sm">{tr("cta.title")}</h2>
+	<p class="font-body-xl text-body-xl text-on-surface-variant mb-xl max-w-xl mx-auto">
+		{tr("cta.description")}
+	</p>
+	<a
+		href={`/${locale}/collaborate`}
+		class="inline-block bg-secondary text-on-secondary px-8 py-4 rounded-lg font-label-bold text-label-bold hover:bg-secondary-fixed transition-colors shadow-lg shadow-secondary/20"
+	>
+		{tr("cta.button")}
+	</a>
 </section>

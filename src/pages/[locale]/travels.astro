@@ -86,7 +86,7 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 
 	<div class="max-w-7xl mx-auto px-6 py-24" id="travels-page" data-regions={JSON.stringify(regions)} data-years={JSON.stringify(years)} data-destinations={JSON.stringify(destinations)} data-locale={currentLocale}>
 		<div class="text-center mb-16">
-			<div class="inline-block px-4 py-1 bg-brand-teal/10 text-brand-teal text-sm tracking-[3px] mb-4">
+			<div class="inline-block px-4 py-1 bg-secondary/10 text-secondary text-sm tracking-[3px] mb-4">
 				{tr("travels.badge")}
 			</div>
 			<h1 class="text-7xl font-bold tracking-tighter mb-6">{tr("travels.title")}</h1>
@@ -101,7 +101,7 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 				{regions.map((region) => (
 					<button
 						class={`px-6 py-2 rounded-full text-sm font-medium transition-all filter-btn region-btn ${
-							region === "All" ? "bg-brand-navy text-white" : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+							region === "All" ? "bg-primary-container text-white" : "bg-gray-100 hover:bg-gray-200 text-gray-700"
 						}`}
 						data-region={region}
 					>
@@ -113,7 +113,7 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 				{years.map((year) => (
 					<button
 						class={`px-5 py-2 rounded-full text-sm font-medium transition-all filter-btn year-btn ${
-							year === "All" ? "bg-brand-teal text-white" : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+							year === "All" ? "bg-secondary text-white" : "bg-gray-100 hover:bg-gray-200 text-gray-700"
 						}`}
 						data-year={year}
 					>
@@ -132,18 +132,18 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 					data-year={dest.year}
 				>
 					<a href={`/${currentLocale}/travels/${dest.slug}`} class="block">
-						<div class="relative h-[420px] bg-gradient-to-br from-brand-navy/80 to-brand-navy overflow-hidden">
+						<div class="relative h-[420px] bg-gradient-to-br from-primary-container/80 from-primary-container overflow-hidden">
 							<div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/80"></div>
 							<div class="absolute top-6 left-6 flex gap-2">
-								<span class="bg-white/90 text-brand-navy text-xs px-4 py-1 rounded-full font-medium tracking-wider">
+								<span class="bg-white/90 text-primary text-xs px-4 py-1 rounded-full font-medium tracking-wider">
 									{dest.country}
 								</span>
-								<span class="bg-white/90 text-brand-navy text-xs px-4 py-1 rounded-full font-medium tracking-wider">
+								<span class="bg-white/90 text-primary text-xs px-4 py-1 rounded-full font-medium tracking-wider">
 									{dest.year}
 								</span>
 							</div>
 							<div class="absolute bottom-8 left-8 right-8">
-								<h3 class="text-white text-4xl font-semibold leading-none mb-3 group-hover:text-brand-teal transition-colors">
+								<h3 class="text-white text-4xl font-semibold leading-none mb-3 group-hover:text-secondary transition-colors">
 									{dest.title}
 								</h3>
 								<p class="text-white/90 text-lg line-clamp-2 mb-4">{dest.description}</p>
@@ -207,10 +207,10 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 	document.querySelectorAll(".region-btn").forEach((btn) => {
 		btn.addEventListener("click", () => {
 			document.querySelectorAll(".region-btn").forEach((b) => {
-				b.classList.remove("bg-brand-navy", "text-white");
+				b.classList.remove("bg-primary-container", "text-white");
 				b.classList.add("bg-gray-100", "text-gray-700");
 			});
-			btn.classList.add("bg-brand-navy", "text-white");
+			btn.classList.add("bg-primary-container", "text-white");
 			btn.classList.remove("bg-gray-100", "text-gray-700");
 			activeRegion = (btn as HTMLElement).dataset.region!;
 			updateFilters();
@@ -221,10 +221,10 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 	document.querySelectorAll(".year-btn").forEach((btn) => {
 		btn.addEventListener("click", () => {
 			document.querySelectorAll(".year-btn").forEach((b) => {
-				b.classList.remove("bg-brand-teal", "text-white");
+				b.classList.remove("bg-secondary", "text-white");
 				b.classList.add("bg-gray-100", "text-gray-700");
 			});
-			btn.classList.add("bg-brand-teal", "text-white");
+			btn.classList.add("bg-secondary", "text-white");
 			btn.classList.remove("bg-gray-100", "text-gray-700");
 			activeYear = (btn as HTMLElement).dataset.year!;
 			updateFilters();

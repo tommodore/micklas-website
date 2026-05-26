@@ -57,7 +57,7 @@ export default function CollaborateForm({ locale }: Props) {
 	if (submitted) {
 		return (
 			<div className="text-center">
-				<div className="mx-auto w-20 h-20 bg-brand-teal/10 rounded-full flex items-center justify-center mb-8">
+				<div className="mx-auto w-20 h-20 bg-secondary/10 rounded-full flex items-center justify-center mb-8">
 					<span className="text-4xl">✉️</span>
 				</div>
 				<h2 className="text-5xl font-bold tracking-tight mb-6">Thank you!</h2>
@@ -67,7 +67,7 @@ export default function CollaborateForm({ locale }: Props) {
 				</p>
 				<a
 					href={`/${locale}`}
-					className="inline-block bg-brand-teal hover:bg-brand-navy text-white px-10 py-4 rounded-full font-medium transition-all"
+					className="inline-block bg-secondary hover:bg-primary text-white px-10 py-4 rounded-full font-medium transition-all"
 				>
 					Back to homepage
 				</a>
@@ -92,7 +92,7 @@ export default function CollaborateForm({ locale }: Props) {
 						value={formData.name}
 						onChange={handleChange}
 						required
-						className="w-full border border-gray-300 rounded-xl px-6 py-4 text-lg focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20"
+						className="w-full border border-gray-300 rounded-xl px-6 py-4 text-lg focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20"
 						placeholder="Anna Schmidt"
 					/>
 				</div>
@@ -106,7 +106,7 @@ export default function CollaborateForm({ locale }: Props) {
 						value={formData.email}
 						onChange={handleChange}
 						required
-						className="w-full border border-gray-300 rounded-xl px-6 py-4 text-lg focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20"
+						className="w-full border border-gray-300 rounded-xl px-6 py-4 text-lg focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20"
 						placeholder="anna@brand.com"
 					/>
 				</div>
@@ -121,7 +121,7 @@ export default function CollaborateForm({ locale }: Props) {
 					name="company"
 					value={formData.company}
 					onChange={handleChange}
-					className="w-full border border-gray-300 rounded-xl px-6 py-4 text-lg focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20"
+					className="w-full border border-gray-300 rounded-xl px-6 py-4 text-lg focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20"
 					placeholder="Your Brand or Tourism Board"
 				/>
 			</div>
@@ -136,7 +136,7 @@ export default function CollaborateForm({ locale }: Props) {
 					onChange={handleChange}
 					required
 					rows={8}
-					className="w-full border border-gray-300 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 resize-y"
+					className="w-full border border-gray-300 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 resize-y"
 					placeholder="We're looking for a travel photographer for our summer campaign in the Alps..."
 				/>
 			</div>
@@ -149,7 +149,7 @@ export default function CollaborateForm({ locale }: Props) {
 						name="consent"
 						checked={formData.consent}
 						onChange={handleChange}
-						className="mt-1.5 w-5 h-5 accent-brand-teal shrink-0"
+						className="mt-1.5 w-5 h-5 accent-secondary shrink-0"
 						required
 					/>
 					<div className="text-sm text-gray-700 leading-relaxed">
@@ -159,7 +159,7 @@ export default function CollaborateForm({ locale }: Props) {
 						third parties. I can revoke this consent at any time by emailing{" "}
 						<a
 							href="mailto:hello@micklas.travel"
-							className="text-brand-teal underline"
+							className="text-secondary underline"
 						>
 							hello@micklas.travel
 						</a>
@@ -169,7 +169,7 @@ export default function CollaborateForm({ locale }: Props) {
 						For more information, please read our{" "}
 						<a
 							href={`/${locale}/privacy`}
-							className="text-brand-teal underline"
+							className="text-secondary underline"
 						>
 							Privacy Policy
 						</a>
@@ -181,7 +181,7 @@ export default function CollaborateForm({ locale }: Props) {
 			<button
 				type="submit"
 				disabled={isSubmitting || !formData.consent}
-				className="w-full bg-brand-teal hover:bg-brand-navy text-white py-5 px-8 rounded-full text-xl font-medium transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+				className="w-full bg-secondary hover:bg-primary text-white py-5 px-8 rounded-full text-xl font-medium transition-all disabled:opacity-60 disabled:cursor-not-allowed"
 			>
 				{isSubmitting ? "Sending your message..." : "Send Message"}
 			</button>

@@ -1,5 +1,5 @@
 // GitHub OAuth handler for Decap CMS on Cloudflare Pages
-// 
+//
 // To set up:
 // 1. Go to https://github.com/settings/developers → OAuth Apps → New OAuth App
 // 2. Set Homepage URL: https://micklas-website.pages.dev

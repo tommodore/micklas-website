@@ -16,25 +16,30 @@ const currentLocale = Astro.currentLocale || "de";
 const currentPath = Astro.url.pathname;
 ---
 
-<div class="flex items-center gap-1 text-sm">
-	{languages.map((lang) => {
-		// Replace the current locale prefix with this locale's prefix
-		const href = currentPath.replace(
-			new RegExp(`^/${currentLocale}(/|$)`),
-			`/${lang.code}$1`,
-		).replace(/\/$/, "") || `/${lang.code}`;
+<div class="relative group">
+	<button class="flex items-center gap-1 font-label-bold text-label-bold text-on-surface-variant hover:text-on-surface transition-colors">
+		<span class="material-symbols-outlined text-base">translate</span>
+		<span class="hidden md:inline">{languages.find(l => l.code === currentLocale)?.label || currentLocale}</span>
+	</button>
+	<div class="absolute right-0 top-full mt-2 glass-panel rounded-xl p-sm min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+		{languages.map((lang) => {
+			const href = currentPath.replace(
+				new RegExp(`^/${currentLocale}(/|$)`),
+				`/${lang.code}$1`,
+			).replace(/\/$/, "") || `/${lang.code}`;
 
-		return (
-			<a
-				href={href}
-				class={`px-2 py-1 rounded transition-all ${
-					currentLocale === lang.code
-						? "bg-brand-teal text-white font-medium"
-						: "hover:bg-gray-100 text-gray-600"
-				}`}
-			>
-				{lang.label}
-			</a>
-		);
-	})}
+			return (
+				<a
+					href={href}
+					class={`block px-sm py-xs rounded-lg font-body-md text-body-md transition-colors ${
+						currentLocale === lang.code
+							? "bg-secondary/20 text-secondary font-label-bold"
+							: "text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high"
+					}`}
+				>
+					{lang.label}
+				</a>
+			);
+		})}
+	</div>
 </div>
