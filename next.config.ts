@@ -2,6 +2,8 @@ import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+	// This Next.js app only serves the Payload admin panel and API
+	// The public frontend is built with Astro and deployed separately
 	images: {
 		remotePatterns: [
 			{
@@ -20,6 +22,3 @@ const nextConfig: NextConfig = {
 };
 
 export default withPayload(nextConfig);
-
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-initOpenNextCloudflareForDev();

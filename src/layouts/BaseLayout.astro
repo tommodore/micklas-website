@@ -1,0 +1,77 @@
+---
+export interface Props {
+	title: string;
+	description?: string;
+	locale?: string;
+}
+
+const { title, description } = Astro.props;
+const currentLocale = Astro.currentLocale || "de";
+---
+
+<!doctype html>
+<html lang={currentLocale}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description || "Micklas Travels — Travel Photography by Michael Glashauser. 120k+ Instagram community. Partner for Social Media Advertising."} />
+		<meta name="theme-color" content="#142A64" />
+		<link rel="icon" type="image/png" href="/logo-micklas.png" />
+		<title>{title} | Micklas Travels</title>
+		<slot name="head" />
+	</head>
+	<body class="bg-white text-brand-navy font-sans antialiased">
+		<!-- Top Navigation -->
+		<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
+			<div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+				<a href={`/${currentLocale}/`} class="flex items-center gap-3">
+					<img src="/logo-micklas.png" alt="Micklas" class="h-9 w-9" />
+					<span class="font-semibold text-xl tracking-tight">Micklas Travels</span>
+				</a>
+
+				<div class="hidden md:flex items-center gap-10 text-sm font-medium">
+					<a href={`/${currentLocale}/about`} class="hover:text-brand-teal transition-colors">
+						About
+					</a>
+					<a href={`/${currentLocale}/travels`} class="hover:text-brand-teal transition-colors">
+						Travels
+					</a>
+					<a href={`/${currentLocale}/journal`} class="hover:text-brand-teal transition-colors">
+						Journal
+					</a>
+					<a href={`/${currentLocale}/collaborate`} class="hover:text-brand-teal transition-colors">
+						Collaborate
+					</a>
+				</div>
+
+				<div class="flex items-center gap-4">
+					<slot name="language-switcher" />
+				</div>
+			</div>
+		</nav>
+
+		<main class="pt-20">
+			<slot />
+		</main>
+
+		<!-- Footer -->
+		<footer class="bg-white border-t py-12 text-sm text-gray-500">
+			<div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+				<div>© {new Date().getFullYear()} Micklas Travels. All rights reserved.</div>
+				<div class="flex gap-6">
+					<a href={`/${currentLocale}/impressum`} class="hover:text-brand-navy">Impressum</a>
+					<a href={`/${currentLocale}/privacy`} class="hover:text-brand-navy">Privacy Policy</a>
+				</div>
+				<div>Built with ❤️ for the travel community</div>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style is:global>
+	@import "tailwindcss";
+	@theme {
+		--color-brand-navy: #142A64;
+		--color-brand-teal: #30BB9A;
+	}
+</style>

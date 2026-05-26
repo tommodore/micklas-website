@@ -1,0 +1,39 @@
+---
+<section class="py-24 bg-white">
+	<div class="max-w-6xl mx-auto px-6">
+		<div class="text-center mb-16">
+			<div class="inline-flex items-center gap-2 mb-4">
+				<span class="w-8 h-px bg-brand-teal"></span>
+				<span class="text-brand-teal text-sm tracking-[3px]">INSTAGRAM</span>
+				<span class="w-8 h-px bg-brand-teal"></span>
+			</div>
+			<h2 class="text-5xl font-bold tracking-tight mb-4">Follow @micklas on Instagram</h2>
+			<p class="text-xl text-gray-600">Latest moments from my travels</p>
+			<a
+				href="https://instagram.com/micklas"
+				target="_blank"
+				class="inline-block mt-4 text-brand-teal hover:underline font-medium"
+			>
+				@micklas on Instagram
+			</a>
+		</div>
+
+		<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+			{[...Array(6)].map((_, __) => (
+				<a
+					href="https://instagram.com/micklas"
+					target="_blank"
+					class="group relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-brand-teal/20 to-brand-navy/20 block"
+				>
+					<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+					<div class="absolute inset-0 flex items-center justify-center text-4xl opacity-30 group-hover:opacity-0 transition-opacity">
+						📸
+					</div>
+					<div class="absolute bottom-4 left-4 right-4 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity line-clamp-2">
+						Follow for daily travel inspiration
+					</div>
+				</a>
+			))}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,54 @@
+---
+interface Props {
+	locale: string;
+}
+
+const { locale } = Astro.props;
+---
+
+<section class="relative h-screen flex items-center justify-center bg-brand-navy text-white overflow-hidden">
+	<div class="absolute inset-0 bg-black/40 z-10"></div>
+
+	<div class="relative z-20 text-center px-6 max-w-5xl">
+		<div class="mb-8 flex justify-center">
+			<img
+				src="/logo-micklas.png"
+				alt="Micklas Travels Logo"
+				width="180"
+				height="180"
+				class="drop-shadow-2xl"
+			/>
+		</div>
+
+		<h1 class="text-7xl md:text-8xl font-bold tracking-tighter mb-6">
+			MICKLAS TRAVELS
+		</h1>
+
+		<p class="text-2xl md:text-3xl text-brand-teal mb-4 font-light">
+			Travel Photography &bull; 120k+ Community
+		</p>
+		<p class="text-xl md:text-2xl max-w-2xl mx-auto mb-12 text-white/90">
+			Your Partner for Social Media Advertising
+		</p>
+
+		<div class="flex flex-col sm:flex-row gap-4 justify-center">
+			<a
+				href={`/${locale}/about`}
+				class="inline-block bg-brand-teal hover:bg-white hover:text-brand-navy text-white px-10 py-4 rounded-full font-medium transition-all text-lg"
+			>
+				Meet Micklas
+			</a>
+			<a
+				href={`/${locale}/collaborate`}
+				class="inline-block bg-white text-brand-navy hover:bg-brand-teal hover:text-white text-lg px-10 py-4 rounded-full font-medium transition-all"
+			>
+				Collaborate with Us
+			</a>
+		</div>
+	</div>
+
+	<div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
+		<div class="text-sm tracking-[4px] mb-2 text-white/70">SCROLL TO EXPLORE</div>
+		<div class="w-px h-12 bg-white/50"></div>
+	</div>
+</section>

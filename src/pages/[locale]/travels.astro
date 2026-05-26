@@ -1,0 +1,225 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
+
+const currentLocale = Astro.currentLocale || "de";
+
+const destinations = [
+	{
+		id: 1,
+		slug: "lofoten-norway",
+		title: "Lofoten Islands",
+		country: "Norway",
+		region: "Europe",
+		year: "2026",
+		description: "Dramatic peaks rising from the sea during the midnight sun.",
+		tags: ["Mountains", "Midnight Sun"],
+	},
+	{
+		id: 2,
+		slug: "patagonia-chile",
+		title: "Torres del Paine",
+		country: "Chile",
+		region: "South America",
+		year: "2026",
+		description: "Epic granite towers and endless wilderness in Patagonia.",
+		tags: ["Hiking", "Wilderness"],
+	},
+	{
+		id: 3,
+		slug: "iceland-winter",
+		title: "Iceland Winter",
+		country: "Iceland",
+		region: "Europe",
+		year: "2025",
+		description: "Northern Lights and ice caves in the land of fire and ice.",
+		tags: ["Northern Lights", "Winter"],
+	},
+	{
+		id: 4,
+		slug: "new-zealand",
+		title: "South Island",
+		country: "New Zealand",
+		region: "Oceania",
+		year: "2025",
+		description: "Milford Sound and the Southern Alps at their most dramatic.",
+		tags: ["Fjords", "Mountains"],
+	},
+	{
+		id: 5,
+		slug: "morocco-desert",
+		title: "Sahara Desert",
+		country: "Morocco",
+		region: "Africa",
+		year: "2024",
+		description: "Golden dunes and ancient kasbahs under endless starry skies.",
+		tags: ["Desert", "Culture"],
+	},
+	{
+		id: 6,
+		slug: "japan-autumn",
+		title: "Kyoto & Alps",
+		country: "Japan",
+		region: "Asia",
+		year: "2024",
+		description: "Autumn colors in Kyoto and the Japanese Alps.",
+		tags: ["Culture", "Autumn"],
+	},
+];
+
+const regions = ["All", "Europe", "South America", "Oceania", "Africa", "Asia"];
+const years = ["All", ...new Set(destinations.map((d) => d.year))];
+---
+
+<BaseLayout title="Travels - Micklas Travels" locale={currentLocale}>
+	<Fragment slot="language-switcher">
+		<LanguageSwitcher />
+	</Fragment>
+
+	<div class="max-w-7xl mx-auto px-6 py-24" id="travels-page" data-regions={JSON.stringify(regions)} data-years={JSON.stringify(years)} data-destinations={JSON.stringify(destinations)} data-locale={currentLocale}>
+		<div class="text-center mb-16">
+			<div class="inline-block px-4 py-1 bg-brand-teal/10 text-brand-teal text-sm tracking-[3px] mb-4">
+				PORTFOLIO
+			</div>
+			<h1 class="text-7xl font-bold tracking-tighter mb-6">Travels</h1>
+			<p class="text-2xl text-gray-600 max-w-2xl mx-auto">
+				A visual journey through some of the world's most breathtaking places.
+			</p>
+		</div>
+
+		<!-- Filters -->
+		<div class="flex flex-col md:flex-row gap-4 mb-12 sticky top-20 bg-white py-6 z-40 border-b">
+			<div class="flex flex-wrap gap-2" id="region-filters">
+				{regions.map((region) => (
+					<button
+						class={`px-6 py-2 rounded-full text-sm font-medium transition-all filter-btn region-btn ${
+							region === "All" ? "bg-brand-navy text-white" : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+						}`}
+						data-region={region}
+					>
+						{region}
+					</button>
+				))}
+			</div>
+			<div class="flex flex-wrap gap-2 md:ml-auto" id="year-filters">
+				{years.map((year) => (
+					<button
+						class={`px-5 py-2 rounded-full text-sm font-medium transition-all filter-btn year-btn ${
+							year === "All" ? "bg-brand-teal text-white" : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+						}`}
+						data-year={year}
+					>
+						{year}
+					</button>
+				))}
+			</div>
+		</div>
+
+		<!-- Portfolio Grid -->
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="travels-grid">
+			{destinations.map((dest) => (
+				<div
+					class="destination-card group block overflow-hidden rounded-3xl border border-gray-100 hover:shadow-2xl transition-all duration-500"
+					data-region={dest.region}
+					data-year={dest.year}
+				>
+					<a href={`/${currentLocale}/travels/${dest.slug}`} class="block">
+						<div class="relative h-[420px] bg-gradient-to-br from-brand-navy/80 to-brand-navy overflow-hidden">
+							<div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/80"></div>
+							<div class="absolute top-6 left-6 flex gap-2">
+								<span class="bg-white/90 text-brand-navy text-xs px-4 py-1 rounded-full font-medium tracking-wider">
+									{dest.country}
+								</span>
+								<span class="bg-white/90 text-brand-navy text-xs px-4 py-1 rounded-full font-medium tracking-wider">
+									{dest.year}
+								</span>
+							</div>
+							<div class="absolute bottom-8 left-8 right-8">
+								<h3 class="text-white text-4xl font-semibold leading-none mb-3 group-hover:text-brand-teal transition-colors">
+									{dest.title}
+								</h3>
+								<p class="text-white/90 text-lg line-clamp-2 mb-4">{dest.description}</p>
+								<div class="flex flex-wrap gap-2">
+									{dest.tags.map((tag) => (
+										<span class="text-xs bg-white/20 text-white px-3 py-1 rounded-full">{tag}</span>
+									))}
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			))}
+		</div>
+
+		<div class="text-center mt-20 text-sm text-gray-500">
+			This portfolio is growing. More destinations will be added regularly.
+		</div>
+	</div>
+</BaseLayout>
+
+<script>
+	let activeRegion = "All";
+	let activeYear = "All";
+
+	function updateFilters() {
+		const cards = document.querySelectorAll<HTMLElement>(".destination-card");
+		let visibleCount = 0;
+
+		cards.forEach((card) => {
+			const region = card.dataset.region;
+			const year = card.dataset.year;
+			const regionMatch = activeRegion === "All" || region === activeRegion;
+			const yearMatch = activeYear === "All" || year === activeYear;
+
+			if (regionMatch && yearMatch) {
+				card.style.display = "block";
+				visibleCount++;
+			} else {
+				card.style.display = "none";
+			}
+		});
+
+		// Show/hide empty state
+		let emptyState = document.getElementById("empty-state");
+		if (visibleCount === 0) {
+			if (!emptyState) {
+				emptyState = document.createElement("div");
+				emptyState.id = "empty-state";
+				emptyState.className = "text-center py-20 text-gray-500 col-span-full";
+				emptyState.textContent = "No destinations found for the selected filters.";
+				document.getElementById("travels-grid")!.appendChild(emptyState);
+			}
+			emptyState.style.display = "block";
+		} else if (emptyState) {
+			emptyState.style.display = "none";
+		}
+	}
+
+	// Region buttons
+	document.querySelectorAll(".region-btn").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			document.querySelectorAll(".region-btn").forEach((b) => {
+				b.classList.remove("bg-brand-navy", "text-white");
+				b.classList.add("bg-gray-100", "text-gray-700");
+			});
+			btn.classList.add("bg-brand-navy", "text-white");
+			btn.classList.remove("bg-gray-100", "text-gray-700");
+			activeRegion = (btn as HTMLElement).dataset.region!;
+			updateFilters();
+		});
+	});
+
+	// Year buttons
+	document.querySelectorAll(".year-btn").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			document.querySelectorAll(".year-btn").forEach((b) => {
+				b.classList.remove("bg-brand-teal", "text-white");
+				b.classList.add("bg-gray-100", "text-gray-700");
+			});
+			btn.classList.add("bg-brand-teal", "text-white");
+			btn.classList.remove("bg-gray-100", "text-gray-700");
+			activeYear = (btn as HTMLElement).dataset.year!;
+			updateFilters();
+		});
+	});
+</script>

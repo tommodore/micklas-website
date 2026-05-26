@@ -1,0 +1,40 @@
+---
+const languages = [
+	{ code: "de", label: "DE" },
+	{ code: "en", label: "EN" },
+	{ code: "fr", label: "FR" },
+	{ code: "it", label: "IT" },
+	{ code: "es", label: "ES" },
+	{ code: "pt", label: "PT" },
+	{ code: "da", label: "DA" },
+	{ code: "sv", label: "SV" },
+	{ code: "no", label: "NO" },
+	{ code: "me", label: "ME" },
+];
+
+const currentLocale = Astro.currentLocale || "de";
+const currentPath = Astro.url.pathname;
+---
+
+<div class="flex items-center gap-1 text-sm">
+	{languages.map((lang) => {
+		// Replace the current locale prefix with this locale's prefix
+		const href = currentPath.replace(
+			new RegExp(`^/${currentLocale}(/|$)`),
+			`/${lang.code}$1`,
+		).replace(/\/$/, "") || `/${lang.code}`;
+
+		return (
+			<a
+				href={href}
+				class={`px-2 py-1 rounded transition-all ${
+					currentLocale === lang.code
+						? "bg-brand-teal text-white font-medium"
+						: "hover:bg-gray-100 text-gray-600"
+				}`}
+			>
+				{lang.label}
+			</a>
+		);
+	})}
+</div>

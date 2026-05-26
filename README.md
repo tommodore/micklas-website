@@ -9,80 +9,98 @@
 
 ## Quick Start for Developers
 
-This project includes a detailed AGENTS.md file to guide any AI coding assistant (Grok, Claude, GPT, Pi, etc.). Always follow it for consistent, high-quality results.
+### Tech Stack
 
-### Tech Stack (Summary)
-- Next.js 15 + TypeScript
-- Payload CMS 3.x (easy admin for Michael)
-- Tailwind + shadcn/ui
-- Multi-language: German (default) + English
-- MongoDB + Cloudflare Pages (frontend) + Railway/Render (Payload CMS)
+- **Frontend:** Astro 5 + TypeScript + Tailwind CSS 4
+- **CMS (Headless):** Payload CMS 3.x (HTTP REST API)
+- **Hosting:** Cloudflare Pages (frontend) + Cloudflare Workers (Payload backend)
+- **Database:** D1 (SQLite) on Cloudflare
+- **Media Storage:** R2 on Cloudflare
+- **Animations:** Framer Motion (via React components in Astro)
+- **Multi-language:** 10 languages (de default, en, fr, it, es, pt, da, sv, no, me)
 
 ### Local Development
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/tommodore/micklas-website.git
-cd micklas-website
+# 1. Install dependencies
+npm install
 
-# 2. Install dependencies
-pnpm install
-
-# 3. Copy environment variables
+# 2. Copy environment variables
 cp .env.example .env.local
-# Edit .env.local with your MongoDB URI, Payload secret, etc.
+# Edit .env.local with Payload secret, etc.
 
-# 4. Start development (Next.js + Payload admin)
-pnpm dev
+# 3. Start both backend + frontend
+npm run dev
 
-# Site: http://localhost:3000
-# Admin: http://localhost:3000/admin (create first user on first visit)
+# Or separately:
+npm run dev:payload   # Payload admin + API at http://localhost:3000
+npm run dev:astro     # Frontend at http://localhost:4321
 ```
 
-### For Michael (Content Updates)
-**You don't need this README.**  
-See the simple guide inside [AGENTS.md](./AGENTS.md) under the section **"For Michael (Non-IT User)"**.
+### Build & Deploy
 
+```bash
+# Build frontend only
+npm run build
+
+# Build Payload backend only
+npm run build:payload
+
+# Deploy frontend to Cloudflare Pages
+npm run deploy
+
+# Deploy Payload backend to Cloudflare Workers
+npm run deploy:payload
+
+# Build + deploy everything
+npm run deploy:all
+```
+
+---
+
+### For Michael (Content Updates)
+
+**You don't need this README.**  
 Log into `/admin` and edit everything visually. Changes publish automatically.
 
----
-
-## Project Deliverables
-
-- Fully responsive, modern website matching the Micklas brand and logo
-- Powerful yet simple Payload CMS admin panel
-- Multi-language support (German + English)
-- Blog / Travel Journal
-- Photo galleries and portfolio
-- Contact / Collaboration inquiry form (GDPR/DSGVO compliant)
-- Instagram integration
-- SEO optimized + fast loading
-- Easy one-person maintenance by Michael
+See the detailed guide inside [AGENTS.md](./AGENTS.md) under **"For Michael (Non-IT User)"**.
 
 ---
 
-## Logo & Branding
+## Project Structure
 
-The official logo is provided in `/public/logo-micklas.png` (use the high-resolution version from the original assets).
-
-**Exact Colors (from logo 1590997233.jpg):**
-- Deep Navy: `#142A64` (circle & main text)
-- Vibrant Teal/Green: `#30BB9A` (banner swoosh)
-- Pure White: `#FFFFFF`
-Use these exact hex values site-wide for perfect brand match.
+```
+/micklas-website/
+├── app/                        # Payload admin (Next.js, backend only)
+│   ├── (payload)/              # Admin panel layout + routes
+│   └── api/                    # Payload REST API
+├── src/
+│   ├── pages/                  # Astro frontend pages
+│   │   └── [locale]/           # i18n routing (de, en, fr, ...)
+│   ├── layouts/                # Astro layouts
+│   ├── components/             # Astro (.astro) + React (.tsx) components
+│   ├── lib/                    # Payload REST API client
+│   ├── data/                   # Static data
+│   ├── collections/            # Payload collections (Posts, Media, Users)
+│   └── globals/                # Payload globals (InstagramHighlights)
+├── astro.config.mjs            # Astro configuration
+├── next.config.ts              # Next.js config (for Payload admin only)
+├── wrangler.jsonc              # Cloudflare Workers config (Payload backend)
+├── public/                     # Static assets
+├── AGENTS.md                   # Detailed project guide
+└── DEPLOYMENT.md               # Deployment guide
+```
 
 ---
 
-## Next Steps (Project Workflow)
+## Brand Colors
 
-1. **Initialize the project** using the Payload + Next.js official template
-2. Follow the detailed roadmap in [AGENTS.md](./AGENTS.md)
-3. Build iteratively — always test the admin panel from Michael's perspective
-4. Deploy frontend to Cloudflare Pages + Payload to Railway/Render (full Cloudflare CDN)
-5. Hand over with a simple video or written onboarding guide for Michael
+| Color | Hex       | Usage                 |
+| ----- | --------- | --------------------- |
+| Navy  | `#142A64` | Primary text, headers |
+| Teal  | `#30BB9A` | Accents, CTAs, links  |
+| White | `#FFFFFF` | Backgrounds           |
 
 ---
 
-**Built with ❤️ for Micklas and his amazing travel community.**
-
-*Ready to replace the old Jimdo site and level up his online presence.* 📸✈️
+**Built with ❤️ for Micklas and his amazing travel community.** 📸✈️

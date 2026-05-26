@@ -1,162 +1,169 @@
 # Deployment Guide for Micklas Travels
 
-## Architecture
+## Architecture (Updated for Astro + Payload)
 
-- **Frontend**: Next.js 15 → Cloudflare Pages
-- **Backend (Payload CMS)**: Railway or Render
-- **Database**: MongoDB Atlas (Free Tier)
-- **Domain**: micklas.travel (managed via Cloudflare)
+The site now runs TWO separate deployments on Cloudflare:
+
+| Component         | Framework              | Deployment                       | Purpose                |
+| ----------------- | ---------------------- | -------------------------------- | ---------------------- |
+| **Frontend**      | Astro 5                | Cloudflare Pages                 | Public-facing website  |
+| **Backend (CMS)** | Payload 3 + Next.js 15 | Cloudflare Worker (via OpenNext) | Admin panel + REST API |
+| **Database**      | D1 SQLite              | Cloudflare D1                    | Content storage        |
+| **Media Storage** | R2                     | Cloudflare R2                    | Image/video uploads    |
+
+Both share the same custom domain `micklas.travel` via Cloudflare routing.
 
 ---
 
-## 1. Deploy Frontend to Cloudflare Pages
+## 1. Deploy Payload CMS (Backend)
 
-### Step 1: Install dependencies
+The backend handles the admin panel (`/admin`) and REST API (`/api/*`).
+
+### Step 1: Build
 
 ```bash
-npm install
-npm install -D @cloudflare/next-on-pages wrangler
+npm run build:payload
 ```
 
-### Step 2: Build the project
+### Step 2: Deploy to Cloudflare Workers
+
+```bash
+# Deploy using OpenNext Cloudflare adapter
+npm run deploy:payload
+```
+
+This will deploy the Next.js + Payload backend as a Cloudflare Worker with the wrangler.jsonc configuration (which includes D1 and R2 bindings).
+
+### Environment Variables (Payload Worker)
+
+Set these in your Cloudflare Worker dashboard or via `.dev.vars`:
+
+```env
+PAYLOAD_SECRET=your-super-long-random-secret-here
+NEXTJS_ENV=production
+```
+
+---
+
+## 2. Deploy Astro Frontend (Public Site)
+
+The frontend is the public-facing Astro site that fetches content from Payload's REST API.
+
+### Step 1: Build
 
 ```bash
 npm run build
 ```
 
-### Step 3: Deploy to Cloudflare
+This builds the Astro site to `dist/`.
 
-**Option A: Via Dashboard (Recommended for first time)**
+### Step 2: Deploy to Cloudflare Pages
+
+```bash
+# Using Wrangler
+npm run deploy
+```
+
+### Initial Setup (Cloudflare Dashboard)
 
 1. Go to [Cloudflare Pages](https://dash.cloudflare.com/pages)
 2. Click **"Create a project"** → **"Connect to Git"**
 3. Select your `micklas-website` repository
 4. Configure build settings:
 
-   | Setting                    | Value                          |
-   |----------------------------|--------------------------------|
-   | Framework preset           | Next.js                        |
-   | Build command              | `npm run deploy:cloudflare`    |
-   | Build output directory     | `.vercel/output/static`        |
-   | Root directory             | (leave empty)                  |
+   | Setting          | Value           |
+   | ---------------- | --------------- |
+   | Framework preset | Astro           |
+   | Build command    | `npm run build` |
+   | Build output dir | `dist/`         |
+   | Root directory   | (leave empty)   |
 
-5. Add these **Environment Variables**:
+5. Add **Environment Variables**:
 
    ```env
-   NEXT_PUBLIC_SITE_URL=https://micklas.travel
-   PAYLOAD_PUBLIC_SERVER_URL=https://your-payload-url.up.railway.app
+   PUBLIC_PAYLOAD_URL=https://micklas.travel
    ```
 
 6. Click **"Save and Deploy"**
 
-**Option B: Via Wrangler CLI**
+---
 
-```bash
-npm run deploy:cloudflare
-npx wrangler pages deploy .vercel/output/static --project-name=micklas-website
-```
+## 3. Cloudflare Routing (Same Domain)
+
+For both deployments to share `micklas.travel`, configure routing in Cloudflare:
+
+### Option A: Cloudflare Pages + Worker (Recommended)
+
+1. Deploy the Astro frontend to Cloudflare Pages on `micklas.travel`
+2. In Cloudflare Dashboard → Workers & Pages → your Payload Worker
+3. Add a **Route**: `admin.micklas.travel/*` → Payload Worker
+4. Or use a subdomain: `admin.micklas.travel` for the Payload admin
+5. Set `PUBLIC_PAYLOAD_URL=https://admin.micklas.travel` in the Astro Pages env
+
+### Option B: Cloudflare Pages Functions Proxy
+
+If both are in the same Pages project, use a `_routes.json` or `functions/` directory to route `/api/*` and `/admin/*` to the Payload Worker via Service Bindings.
 
 ---
 
-## 2. Deploy Payload CMS (Backend)
+## 4. First-Time Setup
 
-### Recommended: Railway (Easiest)
+After deploying Payload:
 
-1. Go to [railway.app](https://railway.app)
-2. Sign in with GitHub
-3. Click **"New Project"** → **"Deploy from GitHub Repo"**
-4. Select `micklas-website`
-5. Add these environment variables:
-
-   ```env
-   DATABASE_URI=mongodb+srv://your-user:your-password@cluster.mongodb.net/micklas?retryWrites=true&w=majority
-   PAYLOAD_SECRET=your-super-long-random-secret-here
-   NEXT_PUBLIC_SERVER_URL=https://micklas.travel
-   ```
-
-6. Railway will give you a public URL like:
-   `https://micklas-production.up.railway.app`
-
-7. Set this as `PAYLOAD_PUBLIC_SERVER_URL` in Cloudflare Pages.
-
----
-
-## 3. Set Up MongoDB (Free)
-
-1. Go to [MongoDB Atlas](https://cloud.mongodb.com)
-2. Create a free cluster (M0 Sandbox)
-3. Create a database user with read/write permissions
-4. Get your connection string (it looks like this):
-   ```
-   mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/micklas?retryWrites=true&w=majority
-   ```
-5. Add this to Railway/Render as `DATABASE_URI`
-
----
-
-## 4. Connect Custom Domain (micklas.travel)
-
-1. In Cloudflare Dashboard, go to your domain `micklas.travel`
-2. Go to **DNS** → Add these records:
-
-   | Type   | Name      | Content                              | Proxy |
-   |--------|-----------|--------------------------------------|-------|
-   | CNAME  | @         | your-cloudflare-pages-url.pages.dev  | ON    |
-   | CNAME  | admin     | your-payload-url.up.railway.app      | ON    |
-
-3. Go to **SSL/TLS** → Set to **Full (strict)**
-
-4. Enable **Always Use HTTPS**
+1. Visit `https://admin.micklas.travel/admin` (or your deployed URL)
+2. Create the first admin user
+3. Add some test posts and media
+4. Verify the Astro frontend can fetch content
 
 ---
 
 ## 5. Environment Variables Summary
 
-### Cloudflare Pages
+### Payload Worker (via wrangler.jsonc + .dev.vars)
+
 ```env
-NEXT_PUBLIC_SITE_URL=https://micklas.travel
-PAYLOAD_PUBLIC_SERVER_URL=https://your-payload-url.up.railway.app
+# Defined in wrangler.jsonc (D1 + R2 bindings)
+PAYLOAD_SECRET=your-secret
 ```
 
-### Railway / Render (Payload)
+### Astro Frontend (Cloudflare Pages env vars)
+
 ```env
-DATABASE_URI=your-mongodb-connection-string
-PAYLOAD_SECRET=super-long-random-string
-NEXT_PUBLIC_SERVER_URL=https://micklas.travel
+PUBLIC_PAYLOAD_URL=https://admin.micklas.travel
 ```
 
 ---
 
-## 6. Local Development with Cloudflare
+## 6. Local Development
 
 ```bash
-# Install wrangler if you haven't already
-npm install -D wrangler
+# Start both Payload backend and Astro frontend
+npm run dev
 
-# Run locally with Cloudflare environment
-npm run dev:cloudflare
+# Or separately:
+npm run dev:payload   # Payload admin + API on :3000
+npm run dev:astro     # Astro frontend on :4321
 ```
+
+The Astro dev server proxies API requests to `http://localhost:3000` automatically.
 
 ---
 
 ## 7. Post-Deployment Checklist
 
-- [ ] Frontend deployed to Cloudflare Pages
-- [ ] Payload deployed to Railway/Render
-- [ ] MongoDB Atlas connected
-- [ ] Custom domain `micklas.travel` working
+- [ ] Payload CMS deployed as Cloudflare Worker
+- [ ] Astro frontend deployed as Cloudflare Pages
+- [ ] D1 database connected and working
+- [ ] R2 storage connected (media uploads working)
+- [ ] Custom domain routing configured
 - [ ] Admin panel accessible at `admin.micklas.travel`
+- [ ] Frontend loads content from Payload API
 - [ ] All 10 languages working
-- [ ] Contact form sending (test it)
-- [ ] Instagram feed loading from admin
-
----
-
-## Need Help?
-
-If you run into any issues during deployment, just paste the error here and I’ll help you fix it.
+- [ ] Contact form submitting (test it)
+- [ ] SEO metadata visible
+- [ ] Cloudflare Web Analytics active
 
 ---
 
 **Last updated**: May 2026
-**Maintained by**: Grok for Micklas Travels
+**Stack**: Astro 5 + Payload 3 + Cloudflare (D1 + R2)

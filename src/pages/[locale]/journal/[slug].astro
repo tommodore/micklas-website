@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LanguageSwitcher from "../../../components/LanguageSwitcher.astro";
+import { getPostBySlug } from "../../../lib/payload";
+
+const currentLocale = Astro.currentLocale || "de";
+const slug = Astro.params.slug;
+
+if (!slug) {
+	return Astro.redirect(`/${currentLocale}/journal`);
+}
+
+const post = await getPostBySlug(slug, currentLocale);
+
+if (!post) {
+	return Astro.redirect(`/${currentLocale}/journal`);
+}
+---
+
+<BaseLayout title={`${post.title} - Micklas Travels Journal`} locale={currentLocale}>
+	<Fragment slot="language-switcher">
+		<LanguageSwitcher />
+	</Fragment>
+
+	<article class="max-w-3xl mx-auto px-6 py-24">
+		<!-- Back link -->
+		<a
+			href={`/${currentLocale}/journal`}
+			class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-brand-teal mb-12 transition-colors"
+		>
+			&larr; Back to Journal
+		</a>
+
+		<!-- Header -->
+		<header class="mb-12">
+			<div class="inline-block px-4 py-1 bg-brand-teal/10 text-brand-teal text-sm tracking-[3px] mb-6">
+				{new Date(post.publishDate).toLocaleDateString(currentLocale)}
+			</div>
+			<h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
+				{post.title}
+			</h1>
+			{post.excerpt && (
+				<p class="text-xl text-gray-600 leading-relaxed">{post.excerpt}</p>
+			)}
+		</header>
+
+		<!-- Cover Image -->
+		{post.coverImage && (
+			<div class="mb-16 rounded-3xl overflow-hidden">
+				<img
+					src={post.coverImage.url}
+					alt={post.coverImage.alt || post.title}
+					class="w-full h-auto"
+					width="1200"
+					height="800"
+				/>
+			</div>
+		)}
+
+		<!-- Content -->
+		{post.content ? (
+			<div class="prose prose-lg max-w-none prose-headings:text-brand-navy prose-a:text-brand-teal">
+				<p class="text-gray-500 italic">
+					Full rich text content will be rendered here from Payload's Lexical editor output.
+				</p>
+				<pre class="text-xs bg-gray-50 p-6 rounded-2xl overflow-x-auto">
+					{JSON.stringify(post.content, null, 2)}
+				</pre>
+			</div>
+		) : (
+			<div class="py-20 text-center text-gray-500">
+				<p>Full content coming soon.</p>
+			</div>
+		)}
+
+		<!-- Share / CTA -->
+		<div class="mt-20 pt-12 border-t border-gray-200 text-center">
+			<p class="text-lg text-gray-600 mb-6">Enjoyed this story?</p>
+			<div class="flex flex-col sm:flex-row gap-4 justify-center">
+				<a
+					href={`/${currentLocale}/journal`}
+					class="inline-block bg-gray-100 hover:bg-gray-200 text-brand-navy px-8 py-3 rounded-full font-medium transition-all"
+				>
+					More Stories
+				</a>
+				<a
+					href={`/${currentLocale}/collaborate`}
+					class="inline-block bg-brand-teal hover:bg-brand-navy text-white px-8 py-3 rounded-full font-medium transition-all"
+				>
+					Work with Micklas
+				</a>
+			</div>
+		</div>
+	</article>
+</BaseLayout>

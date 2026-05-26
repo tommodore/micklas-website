@@ -1,0 +1,22 @@
+---
+interface Props {
+	locale: string;
+}
+
+const { locale } = Astro.props;
+---
+
+<section class="bg-brand-navy text-white py-24">
+	<div class="max-w-3xl mx-auto text-center px-6">
+		<h2 class="text-5xl font-bold tracking-tight mb-6">Ready to work together?</h2>
+		<p class="text-xl text-white/80 mb-10 max-w-lg mx-auto">
+			Whether you're a brand, tourism board, or hotel &mdash; let's create something beautiful.
+		</p>
+		<a
+			href={`/${locale}/collaborate`}
+			class="inline-block bg-brand-teal hover:bg-white hover:text-brand-navy text-white text-lg px-14 py-4 rounded-full font-medium transition-all"
+		>
+			Start a Conversation
+		</a>
+	</div>
+</section>

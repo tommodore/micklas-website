@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
+import Hero from "../../components/Hero.astro";
+import StatsBar from "../../components/StatsBar.astro";
+import FeaturedTravels from "../../components/FeaturedTravels.astro";
+import Testimonials from "../../components/Testimonials.astro";
+import InstagramFeed from "../../components/InstagramFeed.astro";
+import CTASection from "../../components/CTASection.astro";
+
+const currentLocale = Astro.currentLocale || "de";
+---
+
+<BaseLayout title="Home - Micklas Travels" locale={currentLocale}>
+	<Fragment slot="language-switcher">
+		<LanguageSwitcher />
+	</Fragment>
+
+	<Hero locale={currentLocale} />
+	<StatsBar />
+	<FeaturedTravels locale={currentLocale} />
+	<Testimonials />
+	<InstagramFeed />
+	<CTASection locale={currentLocale} />
+</BaseLayout>
