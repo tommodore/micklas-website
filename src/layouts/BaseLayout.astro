@@ -16,7 +16,7 @@ const currentLocale = Astro.currentLocale || "de";
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description || "Micklas Travels — Travel Photography by Michael Glashauser. 120k+ Instagram community. Partner for Social Media Advertising."} />
 		<meta name="theme-color" content="#142A64" />
-		<link rel="icon" type="image/png" href="/logo-micklas.png" />
+		<link rel="icon" type="image/svg+xml" href="/logo-micklas.svg" />
 		<title>{title} | Micklas Travels</title>
 		<slot name="head" />
 	</head>
@@ -25,7 +25,7 @@ const currentLocale = Astro.currentLocale || "de";
 		<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
 			<div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
 				<a href={`/${currentLocale}/`} class="flex items-center gap-3">
-					<img src="/logo-micklas.png" alt="Micklas" class="h-9 w-9" />
+					<img src="/logo-micklas.svg" alt="Micklas" class="h-9 w-9" />
 					<span class="font-semibold text-xl tracking-tight">Micklas Travels</span>
 				</a>
 
@@ -65,7 +65,25 @@ const currentLocale = Astro.currentLocale || "de";
 				<div>Built with ❤️ for the travel community</div>
 			</div>
 		</footer>
-	</body>
+	<script>
+		// Scroll reveal observer
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("visible");
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{ threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
+		);
+
+		document.addEventListener("DOMContentLoaded", () => {
+			document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+		});
+	</script>
+</body>
 </html>
 
 <style is:global>
@@ -73,5 +91,69 @@ const currentLocale = Astro.currentLocale || "de";
 	@theme {
 		--color-brand-navy: #142A64;
 		--color-brand-teal: #30BB9A;
+	}
+
+	/* Scroll reveal animation */
+	.reveal {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.reveal.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/* Hero intro animation */
+	.hero-fade-in {
+		animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	}
+
+	.hero-fade-in-delay-1 {
+		animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+		opacity: 0;
+	}
+
+	.hero-fade-in-delay-2 {
+		animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+		opacity: 0;
+	}
+
+	@keyframes heroFadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Card hover effect */
+	.card-hover {
+		transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.card-hover:hover {
+		transform: translateY(-4px);
+	}
+
+	/* Counter animation */
+	.stat-number {
+		display: inline-block;
+		animation: countIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	}
+
+	@keyframes countIn {
+		from {
+			opacity: 0;
+			transform: scale(0.8);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
 	}
 </style>
