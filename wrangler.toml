@@ -1,0 +1,16 @@
+name = "micklas-website"
+compatibility_date = "2026-05-26"
+compatibility_flags = ["nodejs_compat"]
+
+# Cloudflare Pages configuration
+pages_build_output_dir = ".vercel/output/static"
+
+[vars]
+# Add any public environment variables here (these will be available at build time)
+NEXT_PUBLIC_SITE_URL = "https://micklas.travel"
+
+# For local development only (use .dev.vars for secrets)
+# DATABASE_URI is not needed here - it's only used by Payload on the backend
+
+[env.production.vars]
+NEXT_PUBLIC_SITE_URL = "https://micklas.travel"
