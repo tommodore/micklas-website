@@ -1,6 +1,7 @@
 ---
 import { t, getLocale } from "../i18n/translations";
 import { getAllLocales } from "../i18n/locales";
+import LanguageSwitcher from "../components/LanguageSwitcher.astro";
 
 export interface Props {
 	title: string;
@@ -214,7 +215,7 @@ const hreflangLocales = getAllLocales();
 					{tr("nav.pictures")}
 				</a>
 				<div class="pt-2 border-t border-outline-variant/30 mt-2">
-					<slot name="language-switcher-mobile" />
+					<LanguageSwitcher mobile={true} />
 				</div>
 			</nav>
 		</header>
