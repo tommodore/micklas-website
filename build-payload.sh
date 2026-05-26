@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# deploy-payload.sh
-# Build and deploy the Payload CMS backend (Next.js + OpenNext) to Cloudflare Workers.
-# Generates required config files, builds, deploys, then cleans up.
+# build-payload.sh
+# Build the Payload CMS backend (Next.js + OpenNext) without deploying.
+# Generates required config files that are otherwise gitignored.
+# Run this before deploy-payload.sh, or just use deploy-payload.sh directly.
 
 set -euo pipefail
 
@@ -54,10 +55,8 @@ NEXT_PRIVATE_STANDALONE=true npx next build
 node -e "const fs=require('fs');const p='node_modules/@opennextjs/cloudflare/dist/cli/templates/shims/env.js';let c=fs.readFileSync(p,'utf8');if(!c.includes('export default')){fs.writeFileSync(p,c+'\nexport default { loadEnvConfig }\n')}"
 npx opennextjs-cloudflare build --skipNextBuild
 
-echo "🚀 Deploying Payload to Cloudflare Workers..."
-npx opennextjs-cloudflare deploy
-
 echo "🧹 Cleaning up generated configs..."
 rm -f wrangler.jsonc wrangler.payload.jsonc open-next.config.ts
 
-echo "✅ Payload deployed successfully!"
+echo "✅ Payload backend built successfully!"
+echo "   ➜ .open-next/ directory is ready for deployment"
