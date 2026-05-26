@@ -11,7 +11,7 @@ cp -r dist/client/. dist/
 rm -rf dist/client
 
 echo "📄 Creating Pages _worker.js..."
-cat > dist/_worker.js << 'EOF'
+cat >dist/_worker.js <<'EOF'
 import handler from "./server/entry.mjs";
 export default handler;
 EOF
