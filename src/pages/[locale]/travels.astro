@@ -84,72 +84,73 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 		<LanguageSwitcher />
 	</Fragment>
 
-	<div class="max-w-7xl mx-auto px-6 py-24" id="travels-page" data-regions={JSON.stringify(regions)} data-years={JSON.stringify(years)} data-destinations={JSON.stringify(destinations)} data-locale={currentLocale} description="Explore Micklas' travel photography portfolio — stunning landscapes from Lofoten, Patagonia, Iceland, Japan, and more.">
-		<div class="text-center mb-16">
-			<div class="inline-block px-4 py-1 bg-secondary/10 text-secondary text-sm tracking-[3px] mb-4">
-				{tr("travels.badge")}
+	<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xxl" id="travels-page" data-regions={JSON.stringify(regions)} data-years={JSON.stringify(years)} data-destinations={JSON.stringify(destinations)} data-locale={currentLocale} data-empty-text={tr("travels.empty")}>
+		{/* Header */}
+		<div class="text-center mb-xl">
+			<div class="inline-flex items-center gap-2 mb-sm">
+				<span class="w-8 h-px bg-secondary"></span>
+				<span class="font-label-bold text-label-bold text-secondary uppercase tracking-widest">{tr("travels.badge")}</span>
+				<span class="w-8 h-px bg-secondary"></span>
 			</div>
-			<h1 class="font-headline-xl text-headline-xl mb-6">{tr("travels.title")}</h1>
-			<p class="text-2xl text-on-surface-variant max-w-2xl mx-auto">
-				{tr("travels.subtitle")}
-			</p>
+			<h1 class="font-headline-xl text-headline-xl text-on-surface mb-sm">{tr("travels.title")}</h1>
+			<p class="font-body-xl text-body-xl text-on-surface-variant max-w-2xl mx-auto">{tr("travels.subtitle")}</p>
 		</div>
 
-		<!-- Filters -->
-		<div class="flex flex-col md:flex-row gap-4 mb-12 sticky top-20 bg-white py-6 z-40 border-b">
+		{/* Filters */}
+		<div class="flex flex-col md:flex-row gap-4 mb-xl sticky top-20 bg-surface/95 backdrop-blur-lg py-lg z-40 border-b border-outline-variant/10">
 			<div class="flex flex-wrap gap-2" id="region-filters">
 				{regions.map((region) => (
 					<button
-						class={`px-6 py-2 rounded-full text-sm font-medium transition-all filter-btn region-btn ${
-							region === "All" ? "bg-primary-container text-white" : "bg-surface-container-high hover:bg-surface-container-highest text-on-surface"
+						class={`font-label-bold text-label-bold uppercase px-5 py-2 rounded-full transition-all filter-btn region-btn ${
+							region === "All" ? "bg-secondary text-on-secondary" : "bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface"
 						}`}
 						data-region={region}
 					>
-						{region}
+						{region === "All" ? tr("travels.filter.all") : region}
 					</button>
 				))}
 			</div>
 			<div class="flex flex-wrap gap-2 md:ml-auto" id="year-filters">
 				{years.map((year) => (
 					<button
-						class={`px-5 py-2 rounded-full text-sm font-medium transition-all filter-btn year-btn ${
-							year === "All" ? "bg-secondary text-white" : "bg-surface-container-high hover:bg-surface-container-highest text-on-surface"
+						class={`font-label-bold text-label-bold uppercase px-5 py-2 rounded-full transition-all filter-btn year-btn ${
+							year === "All" ? "bg-secondary text-on-secondary" : "bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface"
 						}`}
 						data-year={year}
 					>
-						{year}
+						{year === "All" ? tr("travels.filter.all") : year}
 					</button>
 				))}
 			</div>
 		</div>
 
-		<!-- Portfolio Grid -->
-		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="travels-grid">
+		{/* Portfolio Grid */}
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="travels-grid">
 			{destinations.map((dest) => (
 				<div
-					class="destination-card group block overflow-hidden rounded-3xl border border-outline-variant/20 hover:shadow-xl transition-all duration-500"
+					class="destination-card group rounded-xl overflow-hidden border border-outline-variant/20 hover:shadow-lg transition-all duration-500"
 					data-region={dest.region}
 					data-year={dest.year}
 				>
 					<a href={`/${currentLocale}/travels/${dest.slug}`} class="block">
-						<div class="relative h-[420px] bg-gradient-to-br from-primary-container/80 from-primary-container overflow-hidden">
-							<div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/80"></div>
-							<div class="absolute top-6 left-6 flex gap-2">
-								<span class="bg-white/90 text-primary text-xs px-4 py-1 rounded-full font-medium tracking-wider">
+						<div class="relative aspect-[4/5] bg-gradient-to-br from-primary-container/80 to-primary-container overflow-hidden">
+							<div class="absolute inset-0 cinematic-overlay"></div>
+							<div class="absolute top-4 left-4 flex gap-2">
+								<span class="bg-surface/80 text-on-surface text-label-sm uppercase tracking-wider px-3 py-1 rounded-full font-medium backdrop-blur-sm">
 									{dest.country}
 								</span>
-								<span class="bg-white/90 text-primary text-xs px-4 py-1 rounded-full font-medium tracking-wider">
+								<span class="bg-surface/80 text-on-surface text-label-sm uppercase tracking-wider px-3 py-1 rounded-full font-medium backdrop-blur-sm">
 									{dest.year}
 								</span>
 							</div>
-							<div class="absolute bottom-8 left-8 right-8">
-								<h3 class="text-white text-4xl font-semibold leading-none mb-3 group-hover:text-secondary transition-colors">
+							<div class="absolute bottom-6 left-6 right-6">
+								<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-2 group-hover:text-secondary transition-colors">
 									{dest.title}
 								</h3>
-								<p class="text-white/90 text-lg line-clamp-2 mb-4">{dest.description}</p>
+								<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-3 opacity-90">{dest.description}</p>
 								<div class="flex flex-wrap gap-2">
 									{dest.tags.map((tag) => (
-										<span class="text-xs bg-white/20 text-white px-3 py-1 rounded-full">{tag}</span>
+										<span class="font-label-sm text-label-sm text-white bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">{tag}</span>
 									))}
 								</div>
 							</div>
@@ -159,7 +160,8 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 			))}
 		</div>
 
-		<div class="text-center mt-20 text-sm text-on-surface-variant">
+		{/* Footer */}
+		<div class="text-center mt-xl font-body-md text-body-md text-on-surface-variant">
 			{tr("travels.footer")}
 		</div>
 	</div>
@@ -187,14 +189,13 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 			}
 		});
 
-		// Show/hide empty state
 		let emptyState = document.getElementById("empty-state");
 		if (visibleCount === 0) {
 			if (!emptyState) {
 				emptyState = document.createElement("div");
 				emptyState.id = "empty-state";
-				emptyState.className = "text-center py-20 text-on-surface-variant col-span-full";
-				emptyState.textContent = "No destinations found for the selected filters.";
+				emptyState.className = "text-center py-xxl text-on-surface-variant col-span-full font-body-md text-body-md";
+				emptyState.textContent = document.getElementById("travels-page")!.dataset.emptyText || "No destinations found.";
 				document.getElementById("travels-grid")!.appendChild(emptyState);
 			}
 			emptyState.style.display = "block";
@@ -207,11 +208,11 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 	document.querySelectorAll(".region-btn").forEach((btn) => {
 		btn.addEventListener("click", () => {
 			document.querySelectorAll(".region-btn").forEach((b) => {
-				b.classList.remove("bg-primary-container", "text-white");
-				b.classList.add("bg-surface-container-high", "text-on-surface");
+				b.classList.remove("bg-secondary", "text-on-secondary");
+				b.classList.add("bg-surface-container-high", "text-on-surface-variant");
 			});
-			btn.classList.add("bg-primary-container", "text-white");
-			btn.classList.remove("bg-surface-container-high", "text-on-surface");
+			btn.classList.add("bg-secondary", "text-on-secondary");
+			btn.classList.remove("bg-surface-container-high", "text-on-surface-variant");
 			activeRegion = (btn as HTMLElement).dataset.region!;
 			updateFilters();
 		});
@@ -221,11 +222,11 @@ const years = ["All", ...new Set(destinations.map((d) => d.year))];
 	document.querySelectorAll(".year-btn").forEach((btn) => {
 		btn.addEventListener("click", () => {
 			document.querySelectorAll(".year-btn").forEach((b) => {
-				b.classList.remove("bg-secondary", "text-white");
-				b.classList.add("bg-surface-container-high", "text-on-surface");
+				b.classList.remove("bg-secondary", "text-on-secondary");
+				b.classList.add("bg-surface-container-high", "text-on-surface-variant");
 			});
-			btn.classList.add("bg-secondary", "text-white");
-			btn.classList.remove("bg-surface-container-high", "text-on-surface");
+			btn.classList.add("bg-secondary", "text-on-secondary");
+			btn.classList.remove("bg-surface-container-high", "text-on-surface-variant");
 			activeYear = (btn as HTMLElement).dataset.year!;
 			updateFilters();
 		});
