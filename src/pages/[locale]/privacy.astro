@@ -11,7 +11,7 @@ import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
 const currentLocale = Astro.currentLocale || "de";
 ---
 
-<BaseLayout title="Privacy Policy - Micklas Travels" locale={currentLocale}>
+<BaseLayout title="Privacy Policy - Micklas Travels" locale={currentLocale} description={"Datenschutzerklärung — Privacy policy for Micklas Travels according to GDPR and DSGVO."}>
 	<Fragment slot="language-switcher">
 		<LanguageSwitcher />
 	</Fragment>

@@ -13,7 +13,7 @@ const currentLocale = Astro.currentLocale || "de";
 const tr = (key: string) => t(key, getLocale(currentLocale));
 ---
 
-<BaseLayout title="Get My Pictures - Micklas Travels" locale={currentLocale}>
+<BaseLayout title="Get My Pictures - Micklas Travels" locale={currentLocale} description={"Licensed travel photography from Micklas. High-resolution images for editorial and commercial use."}>amp; commercial use.">
 	<Fragment slot="language-switcher">
 		<LanguageSwitcher />
 	</Fragment>

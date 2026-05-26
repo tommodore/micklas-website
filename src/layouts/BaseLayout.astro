@@ -12,6 +12,9 @@ const { title, description } = Astro.props;
 const currentLocale = Astro.currentLocale || "de";
 const tr = (key: string) => t(key, getLocale(currentLocale));
 const year = new Date().getFullYear();
+const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.replace(/^\/[a-z]{2}/, "");
+const hreflangLocales = getAllLocales();
 ---
 
 <!doctype html>
@@ -31,6 +34,60 @@ const year = new Date().getFullYear();
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
 			rel="stylesheet"
 		/>
+
+		<!-- Open Graph / Social -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title + " | Micklas Travels"} />
+		<meta property="og:description" content={description || "Micklas Travels — Travel Photography by Michael Glashauser. 120k+ Instagram community."} />
+		<meta property="og:image" content="https://micklas-website.pages.dev/logo-micklas.jpg" />
+		<meta property="og:url" content={"https://micklas-website.pages.dev" + Astro.url.pathname} />
+		<meta property="og:locale" content={currentLocale === "de" ? "de_DE" : currentLocale === "en" ? "en_US" : currentLocale === "fr" ? "fr_FR" : currentLocale === "it" ? "it_IT" : currentLocale === "es" ? "es_ES" : currentLocale === "pt" ? "pt_PT" : currentLocale === "da" ? "da_DK" : currentLocale === "sv" ? "sv_SE" : currentLocale === "no" ? "nb_NO" : "me_ME"} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title + " | Micklas Travels"} />
+		<meta name="twitter:description" content={description || "Micklas Travels — Travel Photography by Michael Glashauser."} />
+		<meta name="twitter:image" content="https://micklas-website.pages.dev/logo-micklas.jpg" />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href={"https://micklas-website.pages.dev" + Astro.url.pathname} />
+		
+		<!-- Hreflang for all 10 locales -->
+		{hreflangLocales.map((l) => (
+			<link rel="alternate" hreflang={l} href={`https://micklas-website.pages.dev/${l}${cleanPath}`} />
+		))}
+		<link rel="alternate" hreflang="x-default" href="https://micklas-website.pages.dev" />
+		
+		<!-- JSON-LD Structured Data: Person -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Michael Glashauser",
+			"alternateName": "Micklas",
+			"url": "https://micklas-website.pages.dev",
+			"image": "https://micklas-website.pages.dev/logo-micklas.jpg",
+			"sameAs": [
+				"https://www.instagram.com/_micklas_/",
+				"https://micklastravels.jimdofree.com/"
+			],
+			"jobTitle": "Travel Photographer & Content Creator",
+			"description": "Travel photographer and content creator with 120k+ Instagram community."
+		}
+		</script>
+		
+		<!-- JSON-LD Structured Data: WebSite -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": "Micklas Travels",
+			"url": "https://micklas-website.pages.dev",
+			"description": "Travel Photography by Michael Glashauser. 120k+ Instagram community. Partner for Social Media Advertising.",
+			"inLanguage": ["de", "en", "fr", "it", "es", "pt", "da", "sv", "no", "me"]
+		}
+		</script>
+		
+		<!-- Cloudflare Web Analytics (privacy-friendly, no cookies) -->
+		<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN"}'></script>
 
 		<title>{title} | Micklas Travels</title>
 		<slot name="head" />
@@ -183,7 +240,7 @@ const year = new Date().getFullYear();
 						{tr("instagram.subtitle")}
 					</p>
 					<a
-						href="https://www.instagram.com/micklas/"
+						href="https://www.instagram.com/_micklas_/"
 						target="_blank"
 						rel="noopener noreferrer"
 						class="inline-flex items-center gap-2 bg-secondary text-on-secondary font-label-bold text-label-bold uppercase px-8 py-4 rounded-lg hover:brightness-110 transition-all duration-300 shadow-lg shadow-secondary/20"
@@ -287,13 +344,13 @@ const year = new Date().getFullYear();
 							<ul class="space-y-2">
 								<li>
 									<a
-										href="https://www.instagram.com/micklas/"
+										href="https://www.instagram.com/_micklas_/"
 										target="_blank"
 										rel="noopener noreferrer"
 										class="flex items-center gap-2 text-on-surface-variant hover:text-secondary transition-colors duration-300"
 									>
 										<span class="material-symbols-outlined text-lg">photo_camera</span>
-										Instagram / @micklas
+										Instagram / @_micklas_
 									</a>
 								</li>
 								<li>
@@ -320,9 +377,30 @@ const year = new Date().getFullYear();
 			</section>
 		</footer>
 
+		<!-- GDPR Cookie Consent Banner -->
+		<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[100] glass-panel border-t border-outline-variant/20 p-lg hidden">
+			<div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-md">
+				<div class="flex-1">
+					<p class="font-body-md text-body-md text-on-surface mb-xs font-semibold">Cookie Einstellungen</p>
+					<p class="font-body-md text-body-md text-on-surface-variant text-sm">
+						Diese Website verwendet nur technisch notwendige Cookies. Keine Tracking-Cookies, keine Analyse-Cookies.
+						<span class="block sm:inline">This site uses only essential cookies. No tracking, no analytics cookies.</span>
+					</p>
+				</div>
+				<div class="flex gap-sm shrink-0">
+					<button id="cookie-accept" class="bg-secondary text-on-secondary font-label-bold text-label-bold uppercase px-6 py-3 rounded-lg hover:brightness-110 transition-all">
+						Akzeptieren / Accept
+					</button>
+					<button id="cookie-decline" class="border border-outline-variant text-on-surface-variant font-label-bold text-label-bold uppercase px-6 py-3 rounded-lg hover:bg-surface-container-high transition-all">
+						Schließen / Close
+					</button>
+				</div>
+			</div>
+		</div>
+
 		{/* ==============================
 					SCRIPTS
-		============================== */}
+		============================== */
 		<script>
 			// Mobile navigation toggle
 			const toggleBtn = document.getElementById("mobile-menu-toggle");
@@ -353,6 +431,25 @@ const year = new Date().getFullYear();
 					});
 				});
 			}
+
+			// GDPR Cookie Consent
+			(function() {
+				const banner = document.getElementById("cookie-banner");
+				const acceptBtn = document.getElementById("cookie-accept");
+				const declineBtn = document.getElementById("cookie-decline");
+				
+				if (banner && !localStorage.getItem("cookie-consent")) {
+					banner.classList.remove("hidden");
+				}
+				
+				function handleConsent() {
+					localStorage.setItem("cookie-consent", "accepted");
+					banner.classList.add("hidden");
+				}
+				
+				if (acceptBtn) acceptBtn.addEventListener("click", handleConsent);
+				if (declineBtn) declineBtn.addEventListener("click", handleConsent);
+			})();
 
 			// Scroll reveal observer
 			const observer = new IntersectionObserver(

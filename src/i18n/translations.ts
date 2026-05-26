@@ -70,9 +70,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Folge @micklas auf Instagram",
+		"instagram.title": "Folge @_micklas_ auf Instagram",
 		"instagram.subtitle": "Aktuelle Momente von meinen Reisen",
-		"instagram.follow": "@micklas auf Instagram",
+		"instagram.follow": "@_micklas_ auf Instagram",
 		"instagram.caption": "Folge für tägliche Reiseinspiration",
 
 		// CTA
@@ -208,9 +208,9 @@ const translations: Record<Locale, TranslationDict> = {
 		"testimonials.title": "What brands say about working with Micklas",
 
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Follow @micklas on Instagram",
+		"instagram.title": "Follow @_micklas_ on Instagram",
 		"instagram.subtitle": "Latest moments from my travels",
-		"instagram.follow": "@micklas on Instagram",
+		"instagram.follow": "@_micklas_ on Instagram",
 		"instagram.caption": "Follow for daily travel inspiration",
 
 		"cta.title": "Ready to work together?",
@@ -348,9 +348,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Suivez @micklas sur Instagram",
+		"instagram.title": "Suivez @_micklas_ sur Instagram",
 		"instagram.subtitle": "Les derniers instants de mes voyages",
-		"instagram.follow": "@micklas sur Instagram",
+		"instagram.follow": "@_micklas_ sur Instagram",
 		"instagram.caption": "Suivez pour une inspiration quotidienne de voyage",
 
 		// CTA
@@ -497,9 +497,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Segui @micklas su Instagram",
+		"instagram.title": "Segui @_micklas_ su Instagram",
 		"instagram.subtitle": "Momenti recenti dai miei viaggi",
-		"instagram.follow": "@micklas su Instagram",
+		"instagram.follow": "@_micklas_ su Instagram",
 		"instagram.caption": "Seguimi per ispirazione quotidiana di viaggio",
 
 		// CTA
@@ -642,9 +642,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Sigue a @micklas en Instagram",
+		"instagram.title": "Sigue a @_micklas_ en Instagram",
 		"instagram.subtitle": "Últimos momentos de mis viajes",
-		"instagram.follow": "@micklas en Instagram",
+		"instagram.follow": "@_micklas_ en Instagram",
 		"instagram.caption": "Sígueme para inspiración diaria de viaje",
 
 		// CTA
@@ -787,9 +787,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Segue @micklas no Instagram",
+		"instagram.title": "Segue @_micklas_ no Instagram",
 		"instagram.subtitle": "Momentos recentes das minhas viagens",
-		"instagram.follow": "@micklas no Instagram",
+		"instagram.follow": "@_micklas_ no Instagram",
 		"instagram.caption": "Segue para inspiração diária de viagem",
 
 		// CTA
@@ -931,9 +931,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Følg @micklas på Instagram",
+		"instagram.title": "Følg @_micklas_ på Instagram",
 		"instagram.subtitle": "Seneste øjeblikke fra mine rejser",
-		"instagram.follow": "@micklas på Instagram",
+		"instagram.follow": "@_micklas_ på Instagram",
 		"instagram.caption": "Følg for daglig rejseinspiration",
 
 		// CTA
@@ -1075,9 +1075,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Följ @micklas på Instagram",
+		"instagram.title": "Följ @_micklas_ på Instagram",
 		"instagram.subtitle": "Senaste ögonblicken från mina resor",
-		"instagram.follow": "@micklas på Instagram",
+		"instagram.follow": "@_micklas_ på Instagram",
 		"instagram.caption": "Följ för daglig reseinspiration",
 
 		// CTA
@@ -1218,9 +1218,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Følg @micklas på Instagram",
+		"instagram.title": "Følg @_micklas_ på Instagram",
 		"instagram.subtitle": "Siste øyeblikk fra reisene mine",
-		"instagram.follow": "@micklas på Instagram",
+		"instagram.follow": "@_micklas_ på Instagram",
 		"instagram.caption": "Følg for daglig reiseinspirasjon",
 
 		// CTA
@@ -1362,9 +1362,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Zapratite @micklas na Instagramu",
+		"instagram.title": "Zapratite @_micklas_ na Instagramu",
 		"instagram.subtitle": "Najnoviji trenuci sa mojih putovanja",
-		"instagram.follow": "@micklas na Instagramu",
+		"instagram.follow": "@_micklas_ na Instagramu",
 		"instagram.caption": "Zapratite za svakodnevnu putopisnu inspiraciju",
 
 		// CTA

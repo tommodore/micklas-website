@@ -13,7 +13,7 @@ const currentLocale = Astro.currentLocale || "de";
 const tr = (key: string) => t(key, getLocale(currentLocale));
 ---
 
-<BaseLayout title="About Micklas" locale={currentLocale}>
+<BaseLayout title="About Micklas" locale={currentLocale} description={"Travel photographer Michael Glashauser (@micklas) — 120k+ followers, 40+ countries. Professional travel photography and brand collaborations."}>amp; brand collaborations.">
 	<Fragment slot="language-switcher">
 		<LanguageSwitcher />
 	</Fragment>

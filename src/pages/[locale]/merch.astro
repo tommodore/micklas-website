@@ -13,7 +13,7 @@ const currentLocale = Astro.currentLocale || "de";
 const tr = (key: string) => t(key, getLocale(currentLocale));
 ---
 
-<BaseLayout title="Merchandise Shop - Micklas Travels" locale={currentLocale}>
+<BaseLayout title="Merchandise Shop - Micklas Travels" locale={currentLocale} description={"Official Micklas Travels merchandise — exclusive collections for adventurers and travel enthusiasts."}>
 	<Fragment slot="language-switcher">
 		<LanguageSwitcher />
 	</Fragment>

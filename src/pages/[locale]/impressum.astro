@@ -11,7 +11,7 @@ import LanguageSwitcher from "../../components/LanguageSwitcher.astro";
 const currentLocale = Astro.currentLocale || "de";
 ---
 
-<BaseLayout title="Impressum - Micklas Travels" locale={currentLocale}>
+<BaseLayout title="Impressum - Micklas Travels" locale={currentLocale} description={"Impressum — Legal notice for Micklas Travels by Michael Glashauser."}>
 	<Fragment slot="language-switcher">
 		<LanguageSwitcher />
 	</Fragment>
@@ -31,7 +31,7 @@ const currentLocale = Astro.currentLocale || "de";
 		<h2>Kontakt</h2>
 		<p>
 			E-Mail: <a href="mailto:hello@micklas.travel">hello@micklas.travel</a><br />
-			Instagram: <a href="https://instagram.com/micklas" target="_blank">@micklas</a>
+			Instagram: <a href="https://instagram.com/_micklas_" target="_blank">@micklas</a>
 		</p>
 
 		<h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
