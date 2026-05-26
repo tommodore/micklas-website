@@ -62,8 +62,8 @@ echo "🧹 Cleaning up generated configs..."
 rm -f wrangler.payload.jsonc open-next.config.ts
 
 if [ -n "$ASTRO_WRANGLER" ]; then
-  echo "$ASTRO_WRANGLER" > wrangler.jsonc
-  echo "🔁 Restored Astro wrangler config"
+	echo "$ASTRO_WRANGLER" >wrangler.jsonc
+	echo "🔁 Restored Astro wrangler config"
 fi
 
 echo "✅ Payload backend built successfully!"
