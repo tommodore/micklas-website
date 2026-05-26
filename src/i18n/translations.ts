@@ -69,7 +69,7 @@ const translations: Record<Locale, TranslationDict> = {
 		// Testimonials
 		"testimonials.badge": "REFERENZEN",
 		"testimonials.title":
-			"Das sagen Marken über die Zusammenarbeit mit Micklas",
+			"Das sagen Kooperationspartner über die Zusammenarbeit mit Micklas",
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
@@ -211,7 +211,7 @@ const translations: Record<Locale, TranslationDict> = {
 		"featured.all": "Explore all destinations →",
 
 		"testimonials.badge": "TESTIMONIALS",
-		"testimonials.title": "What brands say about working with Micklas",
+		"testimonials.title": "What collaboration partners say about working with Micklas",
 
 		"instagram.badge": "INSTAGRAM",
 		"instagram.title": "Fresh perspectives daily on @_micklas_",
@@ -352,7 +352,7 @@ const translations: Record<Locale, TranslationDict> = {
 		// Testimonials
 		"testimonials.badge": "TÉMOIGNAGES",
 		"testimonials.title":
-			"Ce que les marques disent de leur collaboration avec Micklas",
+			"Ce que les partenaires disent de leur collaboration avec Micklas",
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
@@ -505,7 +505,7 @@ const translations: Record<Locale, TranslationDict> = {
 		// Testimonials
 		"testimonials.badge": "TESTIMONIALS",
 		"testimonials.title":
-			"Cosa dicono i brand della collaborazione con Micklas",
+			"Cosa dicono i partner della collaborazione con Micklas",
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
@@ -653,7 +653,7 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Testimonials
 		"testimonials.badge": "TESTIMONIOS",
-		"testimonials.title": "Lo que las marcas dicen sobre trabajar con Micklas",
+		"testimonials.title": "Lo que los socios colaboradores dicen sobre trabajar con Micklas",
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
@@ -801,7 +801,7 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Testimonials
 		"testimonials.badge": "TESTEMUNHOS",
-		"testimonials.title": "O que as marcas dizem sobre trabalhar com o Micklas",
+		"testimonials.title": "O que os parceiros dizem sobre trabalhar com o Micklas",
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
@@ -948,7 +948,7 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Testimonials
 		"testimonials.badge": "UDTALELSER",
-		"testimonials.title": "Hvad brands siger om at arbejde med Micklas",
+		"testimonials.title": "Hvad samarbejdspartnere siger om at arbejde med Micklas",
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
@@ -1095,7 +1095,7 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Testimonials
 		"testimonials.badge": "TESTIMONIALS",
-		"testimonials.title": "Vad varumärken säger om att samarbeta med Micklas",
+		"testimonials.title": "Vad samarbetspartners säger om att samarbeta med Micklas",
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
@@ -1240,7 +1240,7 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Testimonials
 		"testimonials.badge": "ANBEFALINGER",
-		"testimonials.title": "Hva merkevarer sier om å samarbeide med Micklas",
+		"testimonials.title": "Hva samarbeidspartnere sier om å samarbeide med Micklas",
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
@@ -1387,7 +1387,7 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Testimonials
 		"testimonials.badge": "PREPORUKE",
-		"testimonials.title": "Šta brendovi kažu o saradnji sa Micklasom",
+		"testimonials.title": "Šta partneri kažu o saradnji sa Micklasom",
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
