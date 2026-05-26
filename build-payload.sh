@@ -7,7 +7,7 @@
 set -euo pipefail
 
 echo "📝 Generating config files..."
-cat > wrangler.payload.jsonc << 'PAYLOADCONFIG'
+cat >wrangler.payload.jsonc <<'PAYLOADCONFIG'
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"main": ".open-next/worker.js",
@@ -43,7 +43,7 @@ cat > wrangler.payload.jsonc << 'PAYLOADCONFIG'
 }
 PAYLOADCONFIG
 
-cat > open-next.config.ts << 'OPENNEXTCONFIG'
+cat >open-next.config.ts <<'OPENNEXTCONFIG'
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
 export default defineCloudflareConfig({});
 OPENNEXTCONFIG
