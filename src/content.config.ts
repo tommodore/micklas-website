@@ -6,7 +6,9 @@ const journal = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		slug: z.string(),
-		locale: z.enum(["de", "en", "fr", "it", "es", "pt", "da", "sv", "no", "me"]).default("de"),
+		locale: z
+			.enum(["de", "en", "fr", "it", "es", "pt", "da", "sv", "no", "me"])
+			.default("de"),
 		publishDate: z.coerce.date(),
 		excerpt: z.string().optional(),
 		coverImage: z.string().optional(),

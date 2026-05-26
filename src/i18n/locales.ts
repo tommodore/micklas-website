@@ -1,6 +1,17 @@
 import type { GetStaticPathsResult } from "astro";
 
-const locales = ["de", "en", "fr", "it", "es", "pt", "da", "sv", "no", "me"] as const;
+const locales = [
+	"de",
+	"en",
+	"fr",
+	"it",
+	"es",
+	"pt",
+	"da",
+	"sv",
+	"no",
+	"me",
+] as const;
 
 export type Locale = (typeof locales)[number];
 

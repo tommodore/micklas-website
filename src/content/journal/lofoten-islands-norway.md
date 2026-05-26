@@ -17,6 +17,7 @@ There are places that stay with you long after you leave. The Lofoten Islands ar
 I arrived in early May, just as the midnight sun season was beginning. 24 hours of daylight messes with your sense of time, but it also means unlimited golden hour. I spent my days hiking the ridges above Reine, kayaking through the fjords, and photographing the iconic red fishing cabins against the endless sunset.
 
 **The best spots:**
+
 - Reinebringen hike – steep but worth it for the view over Reine
 - Å village – the end of the road, literally. Tiny, quiet, beautiful.
 - Uttakleiv beach – white sand and turquoise water. Feels tropical until you touch the water.
