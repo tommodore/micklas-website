@@ -1,10 +1,18 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import Testimonials from '../components/Testimonials'
+import InstagramFeed from '../components/InstagramFeed'
 
 const locales = ['de', 'en', 'fr', 'it', 'es', 'pt', 'da', 'sv', 'no', 'me']
 
-export default function Home({ params }: { params: { locale: string } }) {
-  if (!locales.includes(params.locale)) {
+export default async function Home({ 
+  params 
+}: { 
+  params: Promise<{ locale: string }> 
+}) {
+  const { locale } = await params
+
+  if (!locales.includes(locale)) {
     return <div>Language not supported</div>
   }
 
@@ -38,13 +46,13 @@ export default function Home({ params }: { params: { locale: string } }) {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              href={`/${params.locale}/about`} 
+              href={`/${locale}/about`} 
               className="btn-primary text-lg px-10 py-4"
             >
               Meet Micklas
             </Link>
             <Link 
-              href={`/${params.locale}/collaborate`} 
+              href={`/${locale}/collaborate`} 
               className="btn-primary bg-white text-brand-navy hover:bg-brand-teal hover:text-white text-lg px-10 py-4"
             >
               Collaborate with Us
@@ -111,11 +119,17 @@ export default function Home({ params }: { params: { locale: string } }) {
         </div>
 
         <div className="text-center mt-12">
-          <Link href={`/${params.locale}/travels`} className="inline-flex items-center text-lg font-medium text-brand-teal hover:underline">
+          <Link href={`/${locale}/travels`} className="inline-flex items-center text-lg font-medium text-brand-teal hover:underline">
             Explore all destinations →
           </Link>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
+
+      {/* Instagram Feed Section */}
+      <InstagramFeed />
 
       {/* CTA Section */}
       <section className="bg-brand-navy text-white py-24">
@@ -125,7 +139,7 @@ export default function Home({ params }: { params: { locale: string } }) {
             Whether you’re a brand, tourism board, or hotel — let’s create something beautiful.
           </p>
           <Link 
-            href={`/${params.locale}/collaborate`} 
+            href={`/${locale}/collaborate`} 
             className="inline-block bg-brand-teal hover:bg-white hover:text-brand-navy text-white text-lg px-14 py-4 rounded-full font-medium transition-all"
           >
             Start a Conversation
@@ -137,8 +151,8 @@ export default function Home({ params }: { params: { locale: string } }) {
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <div>© {new Date().getFullYear()} Micklas Travels. All rights reserved.</div>
           <div className="flex gap-6">
-            <Link href={`/${params.locale}/impressum`} className="hover:text-brand-navy">Impressum</Link>
-            <Link href={`/${params.locale}/privacy`} className="hover:text-brand-navy">Privacy Policy</Link>
+            <Link href={`/${locale}/impressum`} className="hover:text-brand-navy">Impressum</Link>
+            <Link href={`/${locale}/privacy`} className="hover:text-brand-navy">Privacy Policy</Link>
           </div>
           <div>Built with ❤️ for the travel community</div>
         </div>
