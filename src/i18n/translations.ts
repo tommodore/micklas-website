@@ -73,9 +73,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Täglich neue Perspektiven auf @_micklas_",
+		"instagram.title": "Täglich neue Perspektiven auf Instagram",
 		"instagram.subtitle": "Hinter den Kulissen. Unterwegs. Ungefiltert.",
-		"instagram.follow": "@_micklas_ auf Instagram",
+		"instagram.follow": "Micklas auf Instagram",
 		"instagram.caption": "Folge mir für Momente, die Geschichten erzählen.",
 
 		// CTA
@@ -214,9 +214,9 @@ const translations: Record<Locale, TranslationDict> = {
 		"testimonials.title": "What collaboration partners say about working with Micklas",
 
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Fresh perspectives daily on @_micklas_",
+		"instagram.title": "Fresh perspectives daily on Instagram",
 		"instagram.subtitle": "Behind the lens. On the road. Unfiltered.",
-		"instagram.follow": "@_micklas_ on Instagram",
+		"instagram.follow": "Micklas on Instagram",
 		"instagram.caption": "Follow for moments that tell stories.",
 
 		"cta.title": "Let's create something extraordinary together.",
