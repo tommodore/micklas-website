@@ -356,9 +356,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Chaque jour, un nouveau regard sur @_micklas_",
+		"instagram.title": "Chaque jour, un nouveau regard sur Micklas",
 		"instagram.subtitle": "Dans les coulisses. Sur la route. Sans filtre.",
-		"instagram.follow": "@_micklas_ sur Instagram",
+		"instagram.follow": "Micklas sur Instagram",
 		"instagram.caption":
 			"Suivez-moi pour des moments qui racontent des histoires.",
 
@@ -509,9 +509,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Nuove prospettive ogni giorno su @_micklas_",
+		"instagram.title": "Nuove prospettive ogni giorno su Micklas",
 		"instagram.subtitle": "Dietro l'obiettivo. In viaggio. Senza filtri.",
-		"instagram.follow": "@_micklas_ su Instagram",
+		"instagram.follow": "Micklas su Instagram",
 		"instagram.caption": "Seguimi per momenti che raccontano storie.",
 
 		// CTA
@@ -657,9 +657,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Nuevas perspectivas cada día en @_micklas_",
+		"instagram.title": "Nuevas perspectivas cada día en Micklas",
 		"instagram.subtitle": "Detrás del lente. En la carretera. Sin filtros.",
-		"instagram.follow": "@_micklas_ en Instagram",
+		"instagram.follow": "Micklas en Instagram",
 		"instagram.caption": "Sígueme para ver momentos que cuentan historias.",
 
 		// CTA
@@ -805,9 +805,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Novas perspetivas todos os dias no @_micklas_",
+		"instagram.title": "Novas perspetivas todos os dias no Micklas",
 		"instagram.subtitle": "Por trás da lente. Na estrada. Sem filtros.",
-		"instagram.follow": "@_micklas_ no Instagram",
+		"instagram.follow": "Micklas no Instagram",
 		"instagram.caption": "Segue para momentos que contam histórias.",
 
 		// CTA
@@ -952,9 +952,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Friske perspektiver dagligt på @_micklas_",
+		"instagram.title": "Friske perspektiver dagligt på Micklas",
 		"instagram.subtitle": "Bag linsen. På vejen. Ufiltreret.",
-		"instagram.follow": "@_micklas_ på Instagram",
+		"instagram.follow": "Micklas på Instagram",
 		"instagram.caption": "Følg for øjeblikke, der fortæller historier.",
 
 		// CTA
@@ -1099,9 +1099,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Färska perspektiv dagligen på @_micklas_",
+		"instagram.title": "Färska perspektiv dagligen på Micklas",
 		"instagram.subtitle": "Bakom linsen. På vägen. Ofiltrerat.",
-		"instagram.follow": "@_micklas_ på Instagram",
+		"instagram.follow": "Micklas på Instagram",
 		"instagram.caption": "Följ för stunder som berättar historier.",
 
 		// CTA
@@ -1244,9 +1244,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Friske perspektiver daglig på @_micklas_",
+		"instagram.title": "Friske perspektiver daglig på Micklas",
 		"instagram.subtitle": "Bak linsen. På veien. Ufiltrert.",
-		"instagram.follow": "@_micklas_ på Instagram",
+		"instagram.follow": "Micklas på Instagram",
 		"instagram.caption": "Følg for øyeblikk som forteller historier.",
 
 		// CTA
@@ -1391,9 +1391,9 @@ const translations: Record<Locale, TranslationDict> = {
 
 		// Instagram
 		"instagram.badge": "INSTAGRAM",
-		"instagram.title": "Svježe perspektive svakodnevno na @_micklas_",
+		"instagram.title": "Svježe perspektive svakodnevno na Micklas",
 		"instagram.subtitle": "Iza objektiva. Na putu. Bez filtera.",
-		"instagram.follow": "@_micklas_ na Instagramu",
+		"instagram.follow": "Micklas na Instagramu",
 		"instagram.caption": "Zapratite za trenutke koji pričaju priče.",
 
 		// CTA
